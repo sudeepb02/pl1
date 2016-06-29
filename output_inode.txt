@@ -1,0 +1,52 @@
+student@PUN:~/Documents$ g++ inode.cpp
+student@PUN:~/Documents$ ./a.out file.txt Folder fifofile slink 
+=================================
+file.txt			Regular file
+Inode number : 			2496482
+Number of links: 		1
+UID of owner : 			1000
+Total size(bytes):		26
+Last accessed:			Wed Jun 29 09:29:39 2016
+
+Last modified:			Wed Jun 29 09:22:36 2016
+
+Last changed:			Wed Jun 29 09:22:36 2016
+
+=================================
+Folder			Directory
+Inode number : 			2753321
+Number of links: 		2
+UID of owner : 			1000
+Total size(bytes):		4096
+Last accessed:			Wed Jun 29 09:29:39 2016
+
+Last modified:			Wed Jun 29 09:23:41 2016
+
+Last changed:			Wed Jun 29 09:23:41 2016
+
+=================================
+fifofile			FIFO special file
+Inode number : 			2496483
+Number of links: 		1
+UID of owner : 			1000
+Total size(bytes):		0
+Last accessed:			Wed Jun 29 09:25:01 2016
+
+Last modified:			Wed Jun 29 09:25:01 2016
+
+Last changed:			Wed Jun 29 09:26:12 2016
+
+=================================
+slink			Symbolic link
+Inode number : 			2496484
+Number of links: 		1
+UID of owner : 			1000
+Total size(bytes):		8
+Last accessed:			Wed Jun 29 09:25:51 2016
+
+Last modified:			Wed Jun 29 09:25:46 2016
+
+Last changed:			Wed Jun 29 09:25:46 2016
+
+student@PUN:~/Documents$ 
+
