@@ -1,20 +1,21 @@
-
 import socket,sys
 
 c = socket.socket()
 hname = socket.gethostname()
-port = 1025
+port = 2000
 
-c.connect(("localhost",port))
+c.connect((hname,port))
 
-#print(c.recv(1024))
+print(c.recv(1024))
 
-f = open('recdfile.txt','wb')
+fname = raw_input("Please enter file name : ")
 
-while(True):
-	l = c.recv(1024)
-	while(l):
-		f.write(l)
-		l = sc.recv(1024)
+c.send(fname)
+
+f = open('recdfile','wb')
+l = c.recv(1024)
+f.write(l)
+
 f.close()
 c.close()
+

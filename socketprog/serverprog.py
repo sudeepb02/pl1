@@ -2,23 +2,23 @@
 import socket,sys
 
 s = socket.socket()
-hostname = socket.gethostname()
-port = 1025
-s.bind(("localhost",port))
+hname = socket.gethostname()
+port = 2000
 
-s.listen(5)
-c,addr = s.accept()
+s.bind((hname,port))
 
-print('Client connected : ',addr)
-#c.send('Request accepted')
+s.listen(10)
 
-f = open("orgfile.txt","rb")
-l = f.read(1024)
+while(True):
+	c,addr = s.accept()
+	c.send('1.File1 2.File2 3.File3')
+	
+	fname = c.recv(1024)
+	print(str(fname) + 'selected. Sending file...')
 
-while(l):
-	s.send(l)
+	f= open(fname,'rb')
 	l = f.read(1024)
+	c.send(l)
 
-c.close()
-
+	c.close()
 
