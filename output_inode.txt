@@ -36,6 +36,41 @@ Last modified:			Wed Jun 29 09:25:01 2016
 
 Last changed:			Wed Jun 29 09:26:12 2016
 
+
+
+
+=====================Output inode.py ============================
+
+[sudeep@peedus pl1]$ ls
+a.out  HotelDB  inode.cpp  inode.py  output_inode.txt  README.md  socketprog
+[sudeep@peedus pl1]$ python inode.py 
+Enter the no of files: 2
+Enter the file name: inode.cpp
+Enter the file name: socketprog
+==========================
+inode.cpp	Regular file
+Inode: 1578770
+UID of file: 1000
+GID of file: 1001
+Size of file: 1300
+Number of links: 1
+Last accessed: Tue Jul 12 19:46:57 2016
+Last changed: Tue Jul 12 19:43:11 2016
+Last modified: Wed Jun 29 04:02:33 2016
+-----------------
+socketprog	Directory
+Inode: 1578774
+UID of file: 1000
+GID of file: 1001
+Size of file: 4096
+Number of links: 2
+Last accessed: Sun Jul 17 17:09:36 2016
+Last changed: Wed Jul 13 20:18:34 2016
+Last modified: Wed Jul 13 20:18:34 2016
+-----------------
+[sudeep@peedus pl1]$ 
+
+
 =================================
 slink			Symbolic link
 Inode number : 			2496484
