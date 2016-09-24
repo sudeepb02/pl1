@@ -1,0 +1,702 @@
+mysql> 
+mysql> use hoteldb;
+Database changed
+mysql> show tables;
++-------------------+
+| Tables_in_hoteldb |
++-------------------+
+| BBackup           |
+| Booking           |
+| Guest             |
+| Hotel             |
+| Room              |
++-------------------+
+5 rows in set (0.00 sec)
+
+mysql> desc Booking;
++----------+--------+------+-----+------------+-------+
+| Field    | Type   | Null | Key | Default    | Extra |
++----------+--------+------+-----+------------+-------+
+| hotel_no | int(5) | NO   | PRI | 0          |       |
+| guest_no | int(3) | NO   | PRI | 0          |       |
+| datefrom | date   | NO   | PRI | 0000-00-00 |       |
+| dateto   | date   | YES  |     | NULL       |       |
+| room_no  | int(3) | YES  |     | NULL       |       |
++----------+--------+------+-----+------------+-------+
+5 rows in set (0.00 sec)
+
+mysql> desc Guest;
++------------+----------+------+-----+---------+-------+
+| Field      | Type     | Null | Key | Default | Extra |
++------------+----------+------+-----+---------+-------+
+| guest_no   | int(3)   | NO   | PRI | 0       |       |
+| guest_name | char(24) | YES  |     | NULL    |       |
+| addr       | char(24) | YES  |     | NULL    |       |
++------------+----------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> desc Hotel;
++----------+----------+------+-----+---------+-------+
+| Field    | Type     | Null | Key | Default | Extra |
++----------+----------+------+-----+---------+-------+
+| hotel_no | int(5)   | NO   | PRI | 0       |       |
+| name     | char(24) | YES  |     | NULL    |       |
+| city     | char(20) | YES  |     | NULL    |       |
++----------+----------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> desc Room;
++----------+----------+------+-----+---------+-------+
+| Field    | Type     | Null | Key | Default | Extra |
++----------+----------+------+-----+---------+-------+
+| room_no  | int(3)   | NO   | PRI | 0       |       |
+| hotel_no | int(5)   | NO   | PRI | 0       |       |
+| type     | char(20) | YES  |     | NULL    |       |
+| price    | int(5)   | YES  |     | 0       |       |
++----------+----------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select * from Hotel;
++----------+------------------+--------+
+| hotel_no | name             | city   |
++----------+------------------+--------+
+|        1 | TAJ              | Mumbai |
+|        2 | Oberoi           | Mumbai |
+|        3 | Rajdhani         | Pune   |
+|        4 | JW               | Pune   |
+|        5 | Westin           | Pune   |
+|        7 | KAILASH DA DHABA | London |
++----------+------------------+--------+
+6 rows in set (0.00 sec)
+
+mysql> select * from Guest;
++----------+------------+---------+
+| guest_no | guest_name | addr    |
++----------+------------+---------+
+|        1 | Sudeep     | Jalgaon |
+|        2 | Gaurav     | Pune    |
+|        3 | Don        | London  |
++----------+------------+---------+
+3 rows in set (0.00 sec)
+
+mysql> select * from Room;
++---------+----------+--------+-------+
+| room_no | hotel_no | type   | price |
++---------+----------+--------+-------+
+|       1 |        1 | AC     | 21000 |
+|       1 |        2 | AC     | 15750 |
+|       7 |        1 | LUXURY | 25000 |
+|       7 |        3 | NON-AC |  5250 |
+|      20 |        3 | AC     | 10500 |
+|      37 |        5 | AC     | 26250 |
++---------+----------+--------+-------+
+6 rows in set (0.01 sec)
+
+mysql> select * from Booking;
++----------+----------+------------+------------+---------+
+| hotel_no | guest_no | datefrom   | dateto     | room_no |
++----------+----------+------------+------------+---------+
+|        2 |        1 | 2016-07-17 | 2016-07-19 |       2 |
+|        5 |        2 | 2016-07-17 | 2016-07-18 |      37 |
+|        7 |        2 | 2016-07-25 | 2016-07-27 |       1 |
++----------+----------+------------+------------+---------+
+3 rows in set (0.00 sec)
+
+====================================================================
+1. Update price of all rooms by 5%
+
+mysql> update Room set Price= Price + (0.05*Price);
+Query OK, 6 rows affected (0.07 sec)
+Rows matched: 6  Changed: 6  Warnings: 0
+
+mysql> select * from Rooms;
+ERROR 1146 (42S02): Table 'hoteldb.Rooms' doesn't exist
+mysql> select * from Room;
++---------+----------+--------+-------+
+| room_no | hotel_no | type   | price |
++---------+----------+--------+-------+
+|       1 |        1 | AC     | 22050 |
+|       1 |        2 | AC     | 16538 |
+|       7 |        1 | LUXURY | 26250 |
+|       7 |        3 | NON-AC |  5513 |
+|      20 |        3 | AC     | 11025 |
+|      37 |        5 | AC     | 27563 |
++---------+----------+--------+-------+
+6 rows in set (0.00 sec)
+
+mysql> 
+
+=======================================================================
+2. Create a separate table with the same structure as the booking table to hold the archive of records.
+
+mysql> create table Records like Booking;
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> desc Records;
++----------+--------+------+-----+------------+-------+
+| Field    | Type   | Null | Key | Default    | Extra |
++----------+--------+------+-----+------------+-------+
+| hotel_no | int(5) | NO   | PRI | 0          |       |
+| guest_no | int(3) | NO   | PRI | 0          |       |
+| datefrom | date   | NO   | PRI | 0000-00-00 |       |
+| dateto   | date   | YES  |     | NULL       |       |
+| room_no  | int(3) | YES  |     | NULL       |       |
++----------+--------+------+-----+------------+-------+
+5 rows in set (0.00 sec)
+
+mysql>
+========================================================================
+
+3. Using the INSERT statement copy the records from the booking table to the archive table relating to bookings before 1st January 2008.
+
+mysql> insert into Booking values(5,1,2007-09-15,2007-09-20,37);
+Query OK, 1 row affected, 2 warnings (0.06 sec)
+
+mysql> insert into Records select * from Booking where datefrom < '2008-01-01';
+Query OK, 1 row affected (0.06 sec)
+Records: 1  Duplicates: 0  Warnings: 0
+
+mysql> select * from Records;
++----------+----------+------------+------------+---------+
+| hotel_no | guest_no | datefrom   | dateto     | room_no |
++----------+----------+------------+------------+---------+
+|        5 |        1 | 0000-00-00 | 0000-00-00 |      37 |
++----------+----------+------------+------------+---------+
+1 row in set (0.00 sec)
+
+mysql> 
+
+=======================================================================
+
+4. Delete all bookings before 1st January 2008 from the booking table
+
+mysql> delete from Booking where datefrom < '2008-01-01';
+Query OK, 1 row affected (0.06 sec)
+
+mysql> select * from Booking;
++----------+----------+------------+------------+---------+
+| hotel_no | guest_no | datefrom   | dateto     | room_no |
++----------+----------+------------+------------+---------+
+|        2 |        1 | 2016-07-17 | 2016-07-19 |       2 |
+|        5 |        2 | 2016-07-17 | 2016-07-18 |      37 |
+|        7 |        2 | 2016-07-25 | 2016-07-27 |       1 |
++----------+----------+------------+------------+---------+
+3 rows in set (0.00 sec)
+
+mysql> 
+
+======================================================================
+5. List full details of all hotels in London
+
+mysql> insert into Hotel values(11,'Hotel Legacy','London');
+Query OK, 1 row affected (0.06 sec)
+
+mysql> insert into Hotel values(17,'Hotel Royal Palace','London');
+Query OK, 1 row affected (0.05 sec)
+
+mysql> select * from Hotel;
++----------+--------------------+--------+
+| hotel_no | name               | city   |
++----------+--------------------+--------+
+|        1 | TAJ                | Mumbai |
+|        2 | Oberoi             | Mumbai |
+|        3 | Rajdhani           | Pune   |
+|        4 | JW                 | Pune   |
+|        5 | Westin             | Pune   |
+|        7 | KAILASH DA DHABA   | London |
+|       11 | Hotel Legacy       | London |
+|       17 | Hotel Royal Palace | London |
++----------+--------------------+--------+
+8 rows in set (0.00 sec)
+
+mysql> select * from Hotel where city='London';
++----------+--------------------+--------+
+| hotel_no | name               | city   |
++----------+--------------------+--------+
+|        7 | KAILASH DA DHABA   | London |
+|       11 | Hotel Legacy       | London |
+|       17 | Hotel Royal Palace | London |
++----------+--------------------+--------+
+3 rows in set (0.00 sec)
+
+mysql> 
+========================================================================
+
+6. LIst the names and addresses of all guests in London ordered by names
+
+mysql> insert into Guest values(5,'Paul','London');
+Query OK, 1 row affected (0.06 sec)
+
+mysql> insert into Guest values(7,'Carel'
+,'London');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> select * from Guest;
++----------+------------+---------+
+| guest_no | guest_name | addr    |
++----------+------------+---------+
+|        1 | Sudeep     | Jalgaon |
+|        2 | Gaurav     | Pune    |
+|        3 | Don        | London  |
+|        5 | Paul       | London  |
+|        7 | Carel      | London  |
++----------+------------+---------+
+5 rows in set (0.00 sec)
+
+mysql> select guest_name,addr from Guest where add='London' order by guest_name;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'add='London' order by guest_name' at line 1
+mysql> select guest_name,addr from Guest where addr='London' order by guest_name;
++------------+--------+
+| guest_name | addr   |
++------------+--------+
+| Carel      | London |
+| Don        | London |
+| Paul       | London |
++------------+--------+
+3 rows in set (0.00 sec)
+
+mysql> 
+
+===========================================================================
+7. List all double or family rooms with a price below $40.00 per night in ascending order of price
+
+mysql> insert into Room values(7,4,'Double',20);
+Query OK, 1 row affected (0.06 sec)
+
+mysql> insert into Room values(4,5,'Double',30);
+Query OK, 1 row affected (0.06 sec)
+
+mysql> select * from Room;
++---------+----------+--------+-------+
+| room_no | hotel_no | type   | price |
++---------+----------+--------+-------+
+|       1 |        1 | AC     | 22050 |
+|       1 |        2 | AC     | 16538 |
+|       4 |        5 | Double |    30 |
+|       7 |        1 | LUXURY | 26250 |
+|       7 |        3 | NON-AC |  5513 |
+|       7 |        4 | Double |    20 |
+|      20 |        3 | AC     | 11025 |
+|      37 |        5 | AC     | 27563 |
++---------+----------+--------+-------+
+8 rows in set (0.00 sec)
+
+mysql> select * from Room where type in ('Family','Double') and Price < 40 order by price;
++---------+----------+--------+-------+
+| room_no | hotel_no | type   | price |
++---------+----------+--------+-------+
+|       7 |        4 | Double |    20 |
+|       4 |        5 | Double |    30 |
++---------+----------+--------+-------+
+2 rows in set (0.00 sec)
+
+mysql> 
+=========================================================================
+8. List the bookings for which no dateto has been specified
+
+mysql> select * from Booking where dateto is Null;
+Empty set (0.00 sec)
+
+mysql> 
+=========================================================================
+9. How many hotels are there?
+
+mysql> select count(HotelNo) from Hotel;
+ERROR 1054 (42S22): Unknown column 'HotelNo' in 'field list'
+mysql> select count(Hotel_no) from Hotel;
++-----------------+
+| count(Hotel_no) |
++-----------------+
+|               8 |
++-----------------+
+1 row in set (0.00 sec)
+
+mysql> 
+========================================================================
+
+10. What is the average price of room?
+
+mysql> select avg(price) from Room;
++------------+
+| avg(price) |
++------------+
+| 13623.6250 |
++------------+
+1 row in set (0.00 sec)
+
+mysql> 
+=========================================================================
+
+11. What is the total revenue per night from all double rooms?
+
+mysql> select count(*) from Booking Natural join Room where Type = 'Double'
+    -> ;
++----------+
+| count(*) |
++----------+
+|        0 |
++----------+
+1 row in set (0.00 sec)
+
+mysql> 
+
+=========================================================================
+
+11. How many different guests have made booking for August?
+
+mysql> insert into Booking values(4,2,'1991-08-02','1991-08-08',7);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> select * from Booking;
++----------+----------+------------+------------+---------+
+| hotel_no | guest_no | datefrom   | dateto     | room_no |
++----------+----------+------------+------------+---------+
+|        2 |        1 | 2016-07-17 | 2016-07-19 |       2 |
+|        4 |        2 | 1991-08-02 | 1991-08-08 |       7 |
+|        5 |        2 | 2016-07-17 | 2016-07-18 |      37 |
+|        7 |        2 | 2016-07-25 | 2016-07-27 |       1 |
++----------+----------+------------+------------+---------+
+4 rows in set (0.00 sec)
+
+mysql> select count(*) as Bookingsforaug from Booking where Month(dateto) = 08;
++----------------+
+| Bookingsforaug |
++----------------+
+|              1 |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> 
+
+=============================================================================
+
+12. List the price and type of all rooms at the Grosvenor Hotel
+
+mysql> select * from Hotel;
++----------+--------------------+--------+
+| hotel_no | name               | city   |
++----------+--------------------+--------+
+|        1 | TAJ                | Mumbai |
+|        2 | Oberoi             | Mumbai |
+|        3 | Rajdhani           | Pune   |
+|        4 | JW                 | Pune   |
+|        5 | Westin             | Pune   |
+|        7 | KAILASH DA DHABA   | London |
+|       11 | Hotel Legacy       | London |
+|       17 | Hotel Royal Palace | London |
++----------+--------------------+--------+
+8 rows in set (0.00 sec)
+
+mysql> select price, type from Hotel natural join Room where name='Oberoi';
++-------+------+
+| price | type |
++-------+------+
+| 16538 | AC   |
++-------+------+
+1 row in set (0.00 sec)
+
+==============================================================================
+
+13. List all guests currently staying at the Oberoi Hotel
+
+mysql> 
+mysql> insert into Booking values(5,1,'2016-09-19','2016-09-25',37);
+Query OK, 1 row affected (0.06 sec)
+
+mysql> select * from Booking;
++----------+----------+------------+------------+---------+
+| hotel_no | guest_no | datefrom   | dateto     | room_no |
++----------+----------+------------+------------+---------+
+|        2 |        1 | 2016-07-17 | 2016-07-19 |       2 |
+|        4 |        2 | 1991-08-02 | 1991-08-08 |       7 |
+|        5 |        1 | 2016-09-19 | 2016-09-25 |      37 |
+|        5 |        2 | 2016-07-17 | 2016-07-18 |      37 |
+|        7 |        2 | 2016-07-25 | 2016-07-27 |       1 |
++----------+----------+------------+------------+---------+
+5 rows in set (0.00 sec)
+
+mysql> select * from Guest natural join (Booking natural join Hotel) where name='Oberoi' and (dateto < curdate() or datefrom < curdate());
++----------+------------+---------+----------+------------+------------+---------+--------+--------+
+| guest_no | guest_name | addr    | hotel_no | datefrom   | dateto     | room_no | name   | city   |
++----------+------------+---------+----------+------------+------------+---------+--------+--------+
+|        1 | Sudeep     | Jalgaon |        2 | 2016-07-17 | 2016-07-19 |       2 | Oberoi | Mumbai |
++----------+------------+---------+----------+------------+------------+---------+--------+--------+
+1 row in set (0.00 sec)
+
+mysql> 
+
+=================================================================================
+
+14. List the details of all rooms at the Groscenor Hotel including the name of the guest staying in the room, if the room is occupied
+
+mysql> select guest_name,Room.room_no,Room.hotel_no,type,price from Booking,Room,Guest where Booking.guest_no = Guest.guest_no and Booking.room_no = Room.room_no;
++------------+---------+----------+--------+-------+
+| guest_name | room_no | hotel_no | type   | price |
++------------+---------+----------+--------+-------+
+| Gaurav     |       7 |        1 | LUXURY | 26250 |
+| Gaurav     |       7 |        3 | NON-AC |  5513 |
+| Gaurav     |       7 |        4 | Double |    20 |
+| Sudeep     |      37 |        5 | AC     | 27563 |
+| Gaurav     |      37 |        5 | AC     | 27563 |
+| Gaurav     |       1 |        1 | AC     | 22050 |
+| Gaurav     |       1 |        2 | AC     | 16538 |
++------------+---------+----------+--------+-------+
+7 rows in set (0.00 sec)
+
+mysql> 
+
+====================================================================================
+
+15. What is the total income from bookings from the Grosvenor Hotel today?
+
+mysql> select sum(price) as TotalIncome from Room natural join(Hotel natural join Booking) where Name = 'Westin' and datefrom <= curdate() and dateto > curdate();
++-------------+
+| TotalIncome |
++-------------+
+|       27563 |
++-------------+
+1 row in set (0.01 sec)
+
+mysql> 
+
+====================================================================================
+
+16. List the rooms that are currently unoccupied?
+
+mysql> 
+mysql> select * from Room where hotel_no not in (select hotel_no from Booking where datefrom < curdate() and dateto > curdate());
++---------+----------+--------+-------+
+| room_no | hotel_no | type   | price |
++---------+----------+--------+-------+
+|       1 |        1 | AC     | 22050 |
+|       1 |        2 | AC     | 16538 |
+|       4 |        5 | Double |    30 |
+|       7 |        1 | LUXURY | 26250 |
+|       7 |        3 | NON-AC |  5513 |
+|       7 |        4 | Double |    20 |
+|      20 |        3 | AC     | 11025 |
+|      37 |        5 | AC     | 27563 |
++---------+----------+--------+-------+
+8 rows in set (0.00 sec)
+
+mysql> 
+
+====================================================================================
+
+17. What is the lost income from unoccupied rooms at the Grosvenor Hotel?
+
+mysql> select sum(price) as Loss from Room where hotel_no not in (select hotel_no from Booking where datefrom < curdate() and dateto > curdate() and hotel_no in (select hotel_no from Hotel where name = 'TAJ'));
++--------+
+| Loss   |
++--------+
+| 108989 |
++--------+
+1 row in set (0.00 sec)
+
+
+====================================================================================
+
+18. List the no. of rooms in each hotel
+
+mysql> select hotel_no, count(*) as numberofrooms from Room group by hotel_no;
++----------+---------------+
+| hotel_no | numberofrooms |
++----------+---------------+
+|        1 |             2 |
+|        2 |             1 |
+|        3 |             2 |
+|        4 |             1 |
+|        5 |             2 |
++----------+---------------+
+5 rows in set (0.01 sec)
+
+mysql> 
+
+======================================================================================
+
+19. List the number of rooms in each hotel in London
+
+mysql> select * from Hotel;
++----------+--------------------+--------+
+| hotel_no | name               | city   |
++----------+--------------------+--------+
+|        1 | TAJ                | Mumbai |
+|        2 | Oberoi             | Mumbai |
+|        3 | Rajdhani           | Pune   |
+|        4 | JW                 | Pune   |
+|        5 | Westin             | Pune   |
+|        7 | KAILASH DA DHABA   | London |
+|       11 | Hotel Legacy       | London |
+|       17 | Hotel Royal Palace | London |
++----------+--------------------+--------+
+8 rows in set (0.00 sec)
+
+mysql> select * from Room;
++---------+----------+--------+-------+
+| room_no | hotel_no | type   | price |
++---------+----------+--------+-------+
+|       1 |        1 | AC     | 22050 |
+|       1 |        2 | AC     | 16538 |
+|       4 |        5 | Double |    30 |
+|       7 |        1 | LUXURY | 26250 |
+|       7 |        3 | NON-AC |  5513 |
+|       7 |        4 | Double |    20 |
+|      20 |        3 | AC     | 11025 |
+|      37 |        5 | AC     | 27563 |
++---------+----------+--------+-------+
+8 rows in set (0.00 sec)
+
+mysql> insert into Room values (7,11,'Family',300);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert into Room values(7,17,'Family',700);
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into Booking values(17,1,'2016-09-05','2016-09-10',7);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> select * from Room;
++---------+----------+--------+-------+
+| room_no | hotel_no | type   | price |
++---------+----------+--------+-------+
+|       1 |        1 | AC     | 22050 |
+|       1 |        2 | AC     | 16538 |
+|       4 |        5 | Double |    30 |
+|       7 |        1 | LUXURY | 26250 |
+|       7 |        3 | NON-AC |  5513 |
+|       7 |        4 | Double |    20 |
+|       7 |       11 | Family |   300 |
+|       7 |       17 | Family |   700 |
+|      20 |        3 | AC     | 11025 |
+|      37 |        5 | AC     | 27563 |
++---------+----------+--------+-------+
+10 rows in set (0.00 sec)
+
+mysql> select hotel_no,count(*) from Room where hotel_no in(select hotel_no from Hotel where city='London') group by hotel_no;
++----------+----------+
+| hotel_no | count(*) |
++----------+----------+
+|       11 |        1 |
+|       17 |        1 |
++----------+----------+
+2 rows in set (0.00 sec)
+
+mysql> 
+=======================================================================================
+
+20. What is the lost income from unoccupied rooms at each hotel today?
+
+mysql> select hotel_no, sum(price) as Loss from Room where hotel_no not in (select hotel_no from Booking where datefrom < curdate() and dateto > curdate() and hotel_no in (select hotel_no from Hotel)) group by hotel_no;
++----------+-------+
+| hotel_no | Loss  |
++----------+-------+
+|        1 | 48300 |
+|        2 | 16538 |
+|        3 | 16538 |
+|        4 |    20 |
+|        5 | 27593 |
+|       11 |   300 |
+|       17 |   700 |
++----------+-------+
+7 rows in set (0.00 sec)
+
+mysql> 
+
+=======================================================================================
+
+21. What is the avg no of bookings for each hotel in September?
+
+mysql> select hotel_no,count(*) from Room where hotel_no in (select hotel_no from Booking where month(datefrom) = 9) group by hotel_no;
++----------+----------+
+| hotel_no | count(*) |
++----------+----------+
+|        5 |        2 |
+|       17 |        1 |
++----------+----------+
+2 rows in set (0.00 sec)
+
+mysql> 
+=====================================================================================
+22. What is the most commonly booked room type for each hotel in London?
+
+mysql> select hotel_no,type,count(*) from Room where room_no in (select room_no from Booking group by room_no,hotel_no) group by room_no order by room_no desc;
++----------+--------+----------+
+| hotel_no | type   | count(*) |
++----------+--------+----------+
+|        5 | AC     |        1 |
+|       17 | Family |        5 |
+|        2 | AC     |        2 |
++----------+--------+----------+
+3 rows in set (0.00 sec)
+
+mysql> 
+
+
+
+
+
+							VIEWS AND INDEX
+							
+
+
+mysql> create view myView as select hotel_no,guest_no,dateto,room_no from Records;
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> select * from myView;
++----------+----------+------------+---------+
+| hotel_no | guest_no | dateto     | room_no |
++----------+----------+------------+---------+
+|        5 |        1 | 0000-00-00 |      37 |
++----------+----------+------------+---------+
+1 row in set (0.00 sec)
+
+mysql> update myView set dateto='2016-09-10' where guest_no=1;
+Query OK, 1 row affected (0.06 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from myView
+    -> ;
++----------+----------+------------+---------+
+| hotel_no | guest_no | dateto     | room_no |
++----------+----------+------------+---------+
+|        5 |        1 | 2016-09-10 |      37 |
++----------+----------+------------+---------+
+1 row in set (0.00 sec)
+
+mysql> select * from Records;
++----------+----------+------------+------------+---------+
+| hotel_no | guest_no | datefrom   | dateto     | room_no |
++----------+----------+------------+------------+---------+
+|        5 |        1 | 0000-00-00 | 2016-09-10 |      37 |
++----------+----------+------------+------------+---------+
+1 row in set (0.01 sec)
+
+mysql> insert into myView values(1,1,'2006-07-07','',1);
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into myView values(1,1,'2006-07-07',1);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> select * from myView;
++----------+----------+------------+---------+
+| hotel_no | guest_no | dateto     | room_no |
++----------+----------+------------+---------+
+|        1 |        1 | 2006-07-07 |       1 |
+|        5 |        1 | 2016-09-10 |      37 |
++----------+----------+------------+---------+
+2 rows in set (0.00 sec)
+
+mysql> create index myIndex on Records(guest_no);
+Query OK, 0 rows affected (0.17 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> explain select guest_no from Records;
++----+-------------+---------+-------+---------------+----------+---------+------+------+-------------+
+| id | select_type | table   | type  | possible_keys | key      | key_len | ref  | rows | Extra       |
++----+-------------+---------+-------+---------------+----------+---------+------+------+-------------+
+|  1 | SIMPLE      | Records | index | NULL          | guest_no | 4       | NULL |    2 | Using index |
++----+-------------+---------+-------+---------------+----------+---------+------+------+-------------+
+1 row in set (0.00 sec)
+
+mysql> 
+
+
