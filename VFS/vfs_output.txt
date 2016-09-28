@@ -1,0 +1,128 @@
+sudeep@sudeep-PC:~/Documents/Practicals/pl1/VFS$ vim vfs.py
+sudeep@sudeep-PC:~/Documents/Practicals/pl1/VFS$ python vfs.py 
+ENter username : sudeep
+$-->ls 
+Invalid command. Enter man for help
+$-->man
+Commands :
+list
+cd
+makedir
+rmdir
+currdir
+exit
+
+cd : Change directory
+Usage : cd <directory>
+
+
+list : List contents of directory
+
+
+makedir : Make directory
+Usage : mkdir <directory>
+
+
+rmdir : Remove directory
+Usage : rmdir <directory>
+
+
+currd : View present working directory
+
+
+exit : Exit
+
+
+$-->list
+$-->	/
+System
+Users
+$-->cd Users
+$-->list
+$-->	/Users
+sudeep
+$-->makedir student
+$-->list
+$-->	/Users
+sudeep
+student
+$-->cd student
+$-->list
+$-->	/Users/student
+$-->currd
+/Users/student
+$-->makedir pl1
+$-->list
+$-->	/Users/student
+pl1
+$-->cd ..
+$-->list
+$-->	/Users
+sudeep
+student
+$-->currd
+/Users
+sudeep student $-->rmdir student
+Unable to delete. Directory not empty
+$-->cd student
+$-->list
+$-->	/Users/student
+pl1
+$-->rmdir pl1
+$-->list
+$-->	/Users/student
+$-->currd
+/Users/student
+$-->cd ..
+$-->list
+$-->	/Users
+sudeep
+student
+$-->currd
+/Users
+sudeep student $-->cd ..
+$-->list
+$-->	/
+System
+Users
+$-->currd
+/
+System Users $-->cd ..
+Already at root
+$-->clear
+Invalid command. Enter man for help
+$-->currd
+/
+System Users $-->man
+Commands :
+list
+cd
+makedir
+rmdir
+currdir
+exit
+
+cd : Change directory
+Usage : cd <directory>
+
+
+list : List contents of directory
+
+
+makedir : Make directory
+Usage : mkdir <directory>
+
+
+rmdir : Remove directory
+Usage : rmdir <directory>
+
+
+currd : View present working directory
+
+
+exit : Exit
+
+
+$-->exit
+sudeep@sudeep-PC:~/Documents/Practicals/pl1/VFS$ 
+
