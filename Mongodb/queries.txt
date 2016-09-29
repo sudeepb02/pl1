@@ -1,0 +1,1424 @@
+sudeep@sudeep-PC:~/Documents/Practicals/pl1/Mongodb$ mongo
+MongoDB shell version: 3.2.9
+connecting to: test
+Server has startup warnings: 
+2016-09-29T23:42:09.353+0530 I CONTROL  [initandlisten] 
+2016-09-29T23:42:09.353+0530 I CONTROL  [initandlisten] ** WARNING: /sys/kernel/mm/transparent_hugepage/enabled is 'always'.
+2016-09-29T23:42:09.353+0530 I CONTROL  [initandlisten] **        We suggest setting it to 'never'
+2016-09-29T23:42:09.353+0530 I CONTROL  [initandlisten] 
+2016-09-29T23:42:09.353+0530 I CONTROL  [initandlisten] ** WARNING: /sys/kernel/mm/transparent_hugepage/defrag is 'always'.
+2016-09-29T23:42:09.353+0530 I CONTROL  [initandlisten] **        We suggest setting it to 'never'
+2016-09-29T23:42:09.353+0530 I CONTROL  [initandlisten] 
+> 
+
+> use Blogsite;
+switched to db Blogsite
+> show databases;
+Blogsite  0.000GB
+local     0.000GB
+> db.createCollection("mysite");
+{ "ok" : 0, "errmsg" : "collection already exists", "code" : 48 }
+> 
+> show collections;
+mysite
+sites
+> 
+> 
+> db.sites.insert({"title" : "Techcrunch", "description" : "Tech site", "by" : "Crunch Network", "likes" : 187,"url" : "http://techcrunch.com", "tags" : ["technology", "news", "startups"], "comments" : [{"user" : "user1", "message" : "Greate article", "date_created" : new Date('July 8, 2014'), "likes" : 7 }]});
+WriteResult({ "nInserted" : 1 })
+> 
+> db.sites.insert({"title" : "GadgetGuru", "description" : "Device Reviews", "by" : "NDTV Network", "likes" : 587,"url" : "http://gadgets.ndtv.com", "tags" : ["technology", "devices", "reviews"], "comments" : [{"user" : "user1", "message" : "Greate article", "date_created" : new Date('May 8, 2015'), "likes" : 17 }]});
+WriteResult({ "nInserted" : 1 })
+> 
+> db.sites.insert({"title" : "GSMArena", "description" : "Device Specifications", "by" : "Gsm arena", "likes" : 57,"url" : "http://gsmarena.com", "tags" : ["mobiles", "devices", "specifications"], "comments" : [{"user" : "user451", "message" : "Nice", "date_created" : new Date('February 18, 2014'), "likes" : 11 }]});
+WriteResult({ "nInserted" : 1 })
+> 
+> db.sites.insert({"title" : "Firstpost", "description" : "Latest News", "by" : "Firstpost", "likes" : 89,"url" : "http://firstpost", "tags" : ["breaking", "latest", "news"], "comments" : [{"user" : "user41", "message" : "True that!", "date_created" : new Date('October 9, 2015'), "likes" : 1 }]});
+WriteResult({ "nInserted" : 1 })
+> 
+> db.sites.insert({"title" : "Medium", "description" : "Read, Write, and interacrt", "by" : "Various", "likes" : 889,"url" : "http://medium.com", "tags" : ["read", "design", "articles"], "comments" : [{"user" : "user7", "message" : "Great site", "date_created" : new Date('September 29, 2016'), "likes" : 19 }]});
+WriteResult({ "nInserted" : 1 })
+> 
+> db.sites.find().pretty();
+{
+	"_id" : ObjectId("57ed640a94dc917c9c3f7f70"),
+	"title" : "Techcrunch",
+	"description" : "Tech site",
+	"by" : "Crunch Network",
+	"likes" : 187,
+	"url" : "http://techcrunch.com",
+	"tags" : [
+		"technology",
+		"news",
+		"startups"
+	],
+	"comments" : [ ]
+}
+{
+	"_id" : ObjectId("57ed652794dc917c9c3f7f71"),
+	"title" : "GadgetGuru",
+	"description" : "Device Reviews",
+	"by" : "NDTV Network",
+	"likes" : 587,
+	"url" : "http://gadgets.ndtv.com",
+	"tags" : [
+		"technology",
+		"devices",
+		"reviews"
+	],
+	"comments" : [
+		{
+			"user" : "user1",
+			"message" : "Greate article",
+			"date_created" : ISODate("2015-05-07T18:30:00Z"),
+			"likes" : 17
+		}
+	]
+}
+{
+	"_id" : ObjectId("57ed65d894dc917c9c3f7f72"),
+	"title" : "GSMArena",
+	"description" : "Device Specifications",
+	"by" : "Gsm arena",
+	"likes" : 57,
+	"url" : "http://gsmarena.com",
+	"tags" : [
+		"mobiles",
+		"devices",
+		"specifications",
+		"Smartphones"
+	],
+	"comments" : [
+		{
+			"user" : "user451",
+			"message" : "Nice",
+			"date_created" : ISODate("2014-02-17T18:30:00Z"),
+			"likes" : 11
+		}
+	]
+}
+{
+	"_id" : ObjectId("57ed667194dc917c9c3f7f73"),
+	"title" : "Firstlight Couriers",
+	"description" : "International Couriers",
+	"by" : "Firstflight",
+	"likes" : 325,
+	"url" : "http://firstflight.net",
+	"tags" : [
+		"booking",
+		"courier",
+		"international"
+	],
+	"comments" : [
+		{
+			"user" : "user4",
+			"message" : "True that!",
+			"date_created" : ISODate("2014-03-18T18:30:00Z"),
+			"likes" : 12
+		}
+	]
+}
+{
+	"_id" : ObjectId("57ed6b192d5fd28646b623f5"),
+	"url" : "http://techradar.com"
+}
+{
+	"_id" : ObjectId("57ed6c7d94dc917c9c3f7f75"),
+	"title" : "Medium",
+	"description" : "Read, Write, and interacrt",
+	"by" : "Various",
+	"likes" : 889,
+	"url" : "http://medium.com",
+	"tags" : [
+		"read",
+		"design",
+		"articles"
+	],
+	"comments" : [
+		{
+			"user" : "user7",
+			"message" : "Great site",
+			"date_created" : ISODate("2016-09-28T18:30:00Z"),
+			"likes" : 19
+		}
+	]
+}
+{
+	"_id" : ObjectId("57ed71f294dc917c9c3f7f76"),
+	"title" : "Techcrunch",
+	"description" : "Tech site",
+	"by" : "Crunch Network",
+	"likes" : 187,
+	"url" : "http://techcrunch.com",
+	"tags" : [
+		"technology",
+		"news",
+		"startups"
+	],
+	"comments" : [
+		{
+			"user" : "user1",
+			"message" : "Greate article",
+			"date_created" : ISODate("2014-07-07T18:30:00Z"),
+			"likes" : 7
+		}
+	]
+}
+{
+	"_id" : ObjectId("57ed71ff94dc917c9c3f7f77"),
+	"title" : "GadgetGuru",
+	"description" : "Device Reviews",
+	"by" : "NDTV Network",
+	"likes" : 587,
+	"url" : "http://gadgets.ndtv.com",
+	"tags" : [
+		"technology",
+		"devices",
+		"reviews"
+	],
+	"comments" : [
+		{
+			"user" : "user1",
+			"message" : "Greate article",
+			"date_created" : ISODate("2015-05-07T18:30:00Z"),
+			"likes" : 17
+		}
+	]
+}
+{
+	"_id" : ObjectId("57ed720694dc917c9c3f7f78"),
+	"title" : "GSMArena",
+	"description" : "Device Specifications",
+	"by" : "Gsm arena",
+	"likes" : 57,
+	"url" : "http://gsmarena.com",
+	"tags" : [
+		"mobiles",
+		"devices",
+		"specifications"
+	],
+	"comments" : [
+		{
+			"user" : "user451",
+			"message" : "Nice",
+			"date_created" : ISODate("2014-02-17T18:30:00Z"),
+			"likes" : 11
+		}
+	]
+}
+{
+	"_id" : ObjectId("57ed720d94dc917c9c3f7f79"),
+	"title" : "Firstpost",
+	"description" : "Latest News",
+	"by" : "Firstpost",
+	"likes" : 89,
+	"url" : "http://firstpost",
+	"tags" : [
+		"breaking",
+		"latest",
+		"news"
+	],
+	"comments" : [
+		{
+			"user" : "user41",
+			"message" : "True that!",
+			"date_created" : ISODate("2015-10-08T18:30:00Z"),
+			"likes" : 1
+		}
+	]
+}
+{
+	"_id" : ObjectId("57ed721394dc917c9c3f7f7a"),
+	"title" : "Medium",
+	"description" : "Read, Write, and interacrt",
+	"by" : "Various",
+	"likes" : 889,
+	"url" : "http://medium.com",
+	"tags" : [
+		"read",
+		"design",
+		"articles"
+	],
+	"comments" : [
+		{
+			"user" : "user7",
+			"message" : "Great site",
+			"date_created" : ISODate("2016-09-28T18:30:00Z"),
+			"likes" : 19
+		}
+	]
+}
+> db.sites.update({"title":"Medium"},{"$inc":{"likes":1}});
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> 
+> db.sites.find().pretty();
+{
+	"_id" : ObjectId("57ed640a94dc917c9c3f7f70"),
+	"title" : "Techcrunch",
+	"description" : "Tech site",
+	"by" : "Crunch Network",
+	"likes" : 187,
+	"url" : "http://techcrunch.com",
+	"tags" : [
+		"technology",
+		"news",
+		"startups"
+	],
+	"comments" : [ ]
+}
+{
+	"_id" : ObjectId("57ed652794dc917c9c3f7f71"),
+	"title" : "GadgetGuru",
+	"description" : "Device Reviews",
+	"by" : "NDTV Network",
+	"likes" : 587,
+	"url" : "http://gadgets.ndtv.com",
+	"tags" : [
+		"technology",
+		"devices",
+		"reviews"
+	],
+	"comments" : [
+		{
+			"user" : "user1",
+			"message" : "Greate article",
+			"date_created" : ISODate("2015-05-07T18:30:00Z"),
+			"likes" : 17
+		}
+	]
+}
+{
+	"_id" : ObjectId("57ed65d894dc917c9c3f7f72"),
+	"title" : "GSMArena",
+	"description" : "Device Specifications",
+	"by" : "Gsm arena",
+	"likes" : 57,
+	"url" : "http://gsmarena.com",
+	"tags" : [
+		"mobiles",
+		"devices",
+		"specifications",
+		"Smartphones"
+	],
+	"comments" : [
+		{
+			"user" : "user451",
+			"message" : "Nice",
+			"date_created" : ISODate("2014-02-17T18:30:00Z"),
+			"likes" : 11
+		}
+	]
+}
+{
+	"_id" : ObjectId("57ed667194dc917c9c3f7f73"),
+	"title" : "Firstlight Couriers",
+	"description" : "International Couriers",
+	"by" : "Firstflight",
+	"likes" : 325,
+	"url" : "http://firstflight.net",
+	"tags" : [
+		"booking",
+		"courier",
+		"international"
+	],
+	"comments" : [
+		{
+			"user" : "user4",
+			"message" : "True that!",
+			"date_created" : ISODate("2014-03-18T18:30:00Z"),
+			"likes" : 12
+		}
+	]
+}
+{
+	"_id" : ObjectId("57ed6b192d5fd28646b623f5"),
+	"url" : "http://techradar.com"
+}
+{
+	"_id" : ObjectId("57ed6c7d94dc917c9c3f7f75"),
+	"title" : "Medium",
+	"description" : "Read, Write, and interacrt",
+	"by" : "Various",
+	"likes" : 890,
+	"url" : "http://medium.com",
+	"tags" : [
+		"read",
+		"design",
+		"articles"
+	],
+	"comments" : [
+		{
+			"user" : "user7",
+			"message" : "Great site",
+			"date_created" : ISODate("2016-09-28T18:30:00Z"),
+			"likes" : 19
+		}
+	]
+}
+{
+	"_id" : ObjectId("57ed71f294dc917c9c3f7f76"),
+	"title" : "Techcrunch",
+	"description" : "Tech site",
+	"by" : "Crunch Network",
+	"likes" : 187,
+	"url" : "http://techcrunch.com",
+	"tags" : [
+		"technology",
+		"news",
+		"startups"
+	],
+	"comments" : [
+		{
+			"user" : "user1",
+			"message" : "Greate article",
+			"date_created" : ISODate("2014-07-07T18:30:00Z"),
+			"likes" : 7
+		}
+	]
+}
+{
+	"_id" : ObjectId("57ed71ff94dc917c9c3f7f77"),
+	"title" : "GadgetGuru",
+	"description" : "Device Reviews",
+	"by" : "NDTV Network",
+	"likes" : 587,
+	"url" : "http://gadgets.ndtv.com",
+	"tags" : [
+		"technology",
+		"devices",
+		"reviews"
+	],
+	"comments" : [
+		{
+			"user" : "user1",
+			"message" : "Greate article",
+			"date_created" : ISODate("2015-05-07T18:30:00Z"),
+			"likes" : 17
+		}
+	]
+}
+{
+	"_id" : ObjectId("57ed720694dc917c9c3f7f78"),
+	"title" : "GSMArena",
+	"description" : "Device Specifications",
+	"by" : "Gsm arena",
+	"likes" : 57,
+	"url" : "http://gsmarena.com",
+	"tags" : [
+		"mobiles",
+		"devices",
+		"specifications"
+	],
+	"comments" : [
+		{
+			"user" : "user451",
+			"message" : "Nice",
+			"date_created" : ISODate("2014-02-17T18:30:00Z"),
+			"likes" : 11
+		}
+	]
+}
+{
+	"_id" : ObjectId("57ed720d94dc917c9c3f7f79"),
+	"title" : "Firstpost",
+	"description" : "Latest News",
+	"by" : "Firstpost",
+	"likes" : 89,
+	"url" : "http://firstpost",
+	"tags" : [
+		"breaking",
+		"latest",
+		"news"
+	],
+	"comments" : [
+		{
+			"user" : "user41",
+			"message" : "True that!",
+			"date_created" : ISODate("2015-10-08T18:30:00Z"),
+			"likes" : 1
+		}
+	]
+}
+{
+	"_id" : ObjectId("57ed721394dc917c9c3f7f7a"),
+	"title" : "Medium",
+	"description" : "Read, Write, and interacrt",
+	"by" : "Various",
+	"likes" : 889,
+	"url" : "http://medium.com",
+	"tags" : [
+		"read",
+		"design",
+		"articles"
+	],
+	"comments" : [
+		{
+			"user" : "user7",
+			"message" : "Great site",
+			"date_created" : ISODate("2016-09-28T18:30:00Z"),
+			"likes" : 19
+		}
+	]
+}
+> 
+
+
+> db.sites.update({"title":"GSMArena"},{"$push":{"tags":"Smartphones"}});
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> 
+> db.sites.findOne();
+{
+	"_id" : ObjectId("57ed640a94dc917c9c3f7f70"),
+	"title" : "Techcrunch",
+	"description" : "Tech site",
+	"by" : "Crunch Network",
+	"likes" : 187,
+	"url" : "http://techcrunch.com",
+	"tags" : [
+		"technology",
+		"news",
+		"startups"
+	],
+	"comments" : [ ]
+}
+> db.sites.update({"title":"GSMArena"},{"$push":{"tags":"Smartphones"}});
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> 
+> db.sites.findOne();
+{
+	"_id" : ObjectId("57ed640a94dc917c9c3f7f70"),
+	"title" : "Techcrunch",
+	"description" : "Tech site",
+	"by" : "Crunch Network",
+	"likes" : 187,
+	"url" : "http://techcrunch.com",
+	"tags" : [
+		"technology",
+		"news",
+		"startups"
+	],
+	"comments" : [ ]
+}
+> 
+
+> db.sites.update({"title":"Firstflight"},{"$set" : {"title":"Firstlight Couriers"}});
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> 
+> db.sites.find().pretty();
+{
+	"_id" : ObjectId("57ed640a94dc917c9c3f7f70"),
+	"title" : "Techcrunch",
+	"description" : "Tech site",
+	"by" : "Crunch Network",
+	"likes" : 187,
+	"url" : "http://techcrunch.com",
+	"tags" : [
+		"technology",
+		"news",
+		"startups"
+	],
+	"comments" : [ ]
+}
+{
+	"_id" : ObjectId("57ed652794dc917c9c3f7f71"),
+	"title" : "GadgetGuru",
+	"description" : "Device Reviews",
+	"by" : "NDTV Network",
+	"likes" : 587,
+	"url" : "http://gadgets.ndtv.com",
+	"tags" : [
+		"technology",
+		"devices",
+		"reviews"
+	],
+	"comments" : [
+		{
+			"user" : "user1",
+			"message" : "Greate article",
+			"date_created" : ISODate("2015-05-07T18:30:00Z"),
+			"likes" : 17
+		}
+	]
+}
+{
+	"_id" : ObjectId("57ed65d894dc917c9c3f7f72"),
+	"title" : "GSMArena",
+	"description" : "Device Specifications",
+	"by" : "Gsm arena",
+	"likes" : 57,
+	"url" : "http://gsmarena.com",
+	"tags" : [
+		"mobiles",
+		"devices",
+		"specifications",
+		"Smartphones",
+		"Smartphones",
+		"Smartphones"
+	],
+	"comments" : [
+		{
+			"user" : "user451",
+			"message" : "Nice",
+			"date_created" : ISODate("2014-02-17T18:30:00Z"),
+			"likes" : 11
+		}
+	]
+}
+{
+	"_id" : ObjectId("57ed667194dc917c9c3f7f73"),
+	"title" : "Firstlight Couriers",
+	"description" : "International Couriers",
+	"by" : "Firstflight",
+	"likes" : 325,
+	"url" : "http://firstflight.net",
+	"tags" : [
+		"booking",
+		"courier",
+		"international"
+	],
+	"comments" : [
+		{
+			"user" : "user4",
+			"message" : "True that!",
+			"date_created" : ISODate("2014-03-18T18:30:00Z"),
+			"likes" : 12
+		}
+	]
+}
+{
+	"_id" : ObjectId("57ed6b192d5fd28646b623f5"),
+	"url" : "http://techradar.com"
+}
+{
+	"_id" : ObjectId("57ed6c7d94dc917c9c3f7f75"),
+	"title" : "Medium",
+	"description" : "Read, Write, and interacrt",
+	"by" : "Various",
+	"likes" : 890,
+	"url" : "http://medium.com",
+	"tags" : [
+		"read",
+		"design",
+		"articles"
+	],
+	"comments" : [
+		{
+			"user" : "user7",
+			"message" : "Great site",
+			"date_created" : ISODate("2016-09-28T18:30:00Z"),
+			"likes" : 19
+		}
+	]
+}
+{
+	"_id" : ObjectId("57ed71f294dc917c9c3f7f76"),
+	"title" : "Techcrunch",
+	"description" : "Tech site",
+	"by" : "Crunch Network",
+	"likes" : 187,
+	"url" : "http://techcrunch.com",
+	"tags" : [
+		"technology",
+		"news",
+		"startups"
+	],
+	"comments" : [
+		{
+			"user" : "user1",
+			"message" : "Greate article",
+			"date_created" : ISODate("2014-07-07T18:30:00Z"),
+			"likes" : 7
+		}
+	]
+}
+{
+	"_id" : ObjectId("57ed71ff94dc917c9c3f7f77"),
+	"title" : "GadgetGuru",
+	"description" : "Device Reviews",
+	"by" : "NDTV Network",
+	"likes" : 587,
+	"url" : "http://gadgets.ndtv.com",
+	"tags" : [
+		"technology",
+		"devices",
+		"reviews"
+	],
+	"comments" : [
+		{
+			"user" : "user1",
+			"message" : "Greate article",
+			"date_created" : ISODate("2015-05-07T18:30:00Z"),
+			"likes" : 17
+		}
+	]
+}
+{
+	"_id" : ObjectId("57ed720694dc917c9c3f7f78"),
+	"title" : "GSMArena",
+	"description" : "Device Specifications",
+	"by" : "Gsm arena",
+	"likes" : 57,
+	"url" : "http://gsmarena.com",
+	"tags" : [
+		"mobiles",
+		"devices",
+		"specifications"
+	],
+	"comments" : [
+		{
+			"user" : "user451",
+			"message" : "Nice",
+			"date_created" : ISODate("2014-02-17T18:30:00Z"),
+			"likes" : 11
+		}
+	]
+}
+{
+	"_id" : ObjectId("57ed720d94dc917c9c3f7f79"),
+	"title" : "Firstlight Couriers",
+	"description" : "International Couriers",
+	"by" : "Firstflight",
+	"likes" : 325,
+	"url" : "http://firstflight.net",
+	"tags" : [
+		"booking",
+		"courier",
+		"international"
+	],
+	"comments" : [
+		{
+			"user" : "user4",
+			"message" : "True that!",
+			"date_created" : ISODate("2014-03-18T18:30:00Z"),
+			"likes" : 12
+		}
+	]
+}
+{
+	"_id" : ObjectId("57ed721394dc917c9c3f7f7a"),
+	"title" : "Medium",
+	"description" : "Read, Write, and interacrt",
+	"by" : "Various",
+	"likes" : 889,
+	"url" : "http://medium.com",
+	"tags" : [
+		"read",
+		"design",
+		"articles"
+	],
+	"comments" : [
+		{
+			"user" : "user7",
+			"message" : "Great site",
+			"date_created" : ISODate("2016-09-28T18:30:00Z"),
+			"likes" : 19
+		}
+	]
+}
+> 
+> db.sites.update({"title":"TechRadar"},{"url":"http://techradar.com"},true);
+WriteResult({
+	"nMatched" : 0,
+	"nUpserted" : 1,
+	"nModified" : 0,
+	"_id" : ObjectId("57ed73ab2d5fd28646b623f6")
+})
+> 
+> db.sites.find().pretty();
+{
+	"_id" : ObjectId("57ed640a94dc917c9c3f7f70"),
+	"title" : "Techcrunch",
+	"description" : "Tech site",
+	"by" : "Crunch Network",
+	"likes" : 187,
+	"url" : "http://techcrunch.com",
+	"tags" : [
+		"technology",
+		"news",
+		"startups"
+	],
+	"comments" : [ ]
+}
+{
+	"_id" : ObjectId("57ed652794dc917c9c3f7f71"),
+	"title" : "GadgetGuru",
+	"description" : "Device Reviews",
+	"by" : "NDTV Network",
+	"likes" : 587,
+	"url" : "http://gadgets.ndtv.com",
+	"tags" : [
+		"technology",
+		"devices",
+		"reviews"
+	],
+	"comments" : [
+		{
+			"user" : "user1",
+			"message" : "Greate article",
+			"date_created" : ISODate("2015-05-07T18:30:00Z"),
+			"likes" : 17
+		}
+	]
+}
+{
+	"_id" : ObjectId("57ed65d894dc917c9c3f7f72"),
+	"title" : "GSMArena",
+	"description" : "Device Specifications",
+	"by" : "Gsm arena",
+	"likes" : 57,
+	"url" : "http://gsmarena.com",
+	"tags" : [
+		"mobiles",
+		"devices",
+		"specifications",
+		"Smartphones",
+		"Smartphones",
+		"Smartphones"
+	],
+	"comments" : [
+		{
+			"user" : "user451",
+			"message" : "Nice",
+			"date_created" : ISODate("2014-02-17T18:30:00Z"),
+			"likes" : 11
+		}
+	]
+}
+{
+	"_id" : ObjectId("57ed667194dc917c9c3f7f73"),
+	"title" : "Firstlight Couriers",
+	"description" : "International Couriers",
+	"by" : "Firstflight",
+	"likes" : 325,
+	"url" : "http://firstflight.net",
+	"tags" : [
+		"booking",
+		"courier",
+		"international"
+	],
+	"comments" : [
+		{
+			"user" : "user4",
+			"message" : "True that!",
+			"date_created" : ISODate("2014-03-18T18:30:00Z"),
+			"likes" : 12
+		}
+	]
+}
+{
+	"_id" : ObjectId("57ed6b192d5fd28646b623f5"),
+	"url" : "http://techradar.com"
+}
+{
+	"_id" : ObjectId("57ed6c7d94dc917c9c3f7f75"),
+	"title" : "Medium",
+	"description" : "Read, Write, and interacrt",
+	"by" : "Various",
+	"likes" : 890,
+	"url" : "http://medium.com",
+	"tags" : [
+		"read",
+		"design",
+		"articles"
+	],
+	"comments" : [
+		{
+			"user" : "user7",
+			"message" : "Great site",
+			"date_created" : ISODate("2016-09-28T18:30:00Z"),
+			"likes" : 19
+		}
+	]
+}
+{
+	"_id" : ObjectId("57ed71f294dc917c9c3f7f76"),
+	"title" : "Techcrunch",
+	"description" : "Tech site",
+	"by" : "Crunch Network",
+	"likes" : 187,
+	"url" : "http://techcrunch.com",
+	"tags" : [
+		"technology",
+		"news",
+		"startups"
+	],
+	"comments" : [
+		{
+			"user" : "user1",
+			"message" : "Greate article",
+			"date_created" : ISODate("2014-07-07T18:30:00Z"),
+			"likes" : 7
+		}
+	]
+}
+{
+	"_id" : ObjectId("57ed71ff94dc917c9c3f7f77"),
+	"title" : "GadgetGuru",
+	"description" : "Device Reviews",
+	"by" : "NDTV Network",
+	"likes" : 587,
+	"url" : "http://gadgets.ndtv.com",
+	"tags" : [
+		"technology",
+		"devices",
+		"reviews"
+	],
+	"comments" : [
+		{
+			"user" : "user1",
+			"message" : "Greate article",
+			"date_created" : ISODate("2015-05-07T18:30:00Z"),
+			"likes" : 17
+		}
+	]
+}
+{
+	"_id" : ObjectId("57ed720694dc917c9c3f7f78"),
+	"title" : "GSMArena",
+	"description" : "Device Specifications",
+	"by" : "Gsm arena",
+	"likes" : 57,
+	"url" : "http://gsmarena.com",
+	"tags" : [
+		"mobiles",
+		"devices",
+		"specifications"
+	],
+	"comments" : [
+		{
+			"user" : "user451",
+			"message" : "Nice",
+			"date_created" : ISODate("2014-02-17T18:30:00Z"),
+			"likes" : 11
+		}
+	]
+}
+{
+	"_id" : ObjectId("57ed720d94dc917c9c3f7f79"),
+	"title" : "Firstlight Couriers",
+	"description" : "International Couriers",
+	"by" : "Firstflight",
+	"likes" : 325,
+	"url" : "http://firstflight.net",
+	"tags" : [
+		"booking",
+		"courier",
+		"international"
+	],
+	"comments" : [
+		{
+			"user" : "user4",
+			"message" : "True that!",
+			"date_created" : ISODate("2014-03-18T18:30:00Z"),
+			"likes" : 12
+		}
+	]
+}
+{
+	"_id" : ObjectId("57ed721394dc917c9c3f7f7a"),
+	"title" : "Medium",
+	"description" : "Read, Write, and interacrt",
+	"by" : "Various",
+	"likes" : 889,
+	"url" : "http://medium.com",
+	"tags" : [
+		"read",
+		"design",
+		"articles"
+	],
+	"comments" : [
+		{
+			"user" : "user7",
+			"message" : "Great site",
+			"date_created" : ISODate("2016-09-28T18:30:00Z"),
+			"likes" : 19
+		}
+	]
+}
+{
+	"_id" : ObjectId("57ed73ab2d5fd28646b623f6"),
+	"url" : "http://techradar.com"
+}
+> 
+
+
+
+> 
+> db.sites.remove({"title":"Medium"});
+WriteResult({ "nRemoved" : 1 })
+> 
+> db.sites.find().pretty();
+{
+	"_id" : ObjectId("57ed640a94dc917c9c3f7f70"),
+	"title" : "Techcrunch",
+	"description" : "Tech site",
+	"by" : "Crunch Network",
+	"likes" : 187,
+	"url" : "http://techcrunch.com",
+	"tags" : [
+		"technology",
+		"news",
+		"startups"
+	],
+	"comments" : [ ]
+}
+{
+	"_id" : ObjectId("57ed652794dc917c9c3f7f71"),
+	"title" : "GadgetGuru",
+	"description" : "Device Reviews",
+	"by" : "NDTV Network",
+	"likes" : 587,
+	"url" : "http://gadgets.ndtv.com",
+	"tags" : [
+		"technology",
+		"devices",
+		"reviews"
+	],
+	"comments" : [
+		{
+			"user" : "user1",
+			"message" : "Greate article",
+			"date_created" : ISODate("2015-05-07T18:30:00Z"),
+			"likes" : 17
+		}
+	]
+}
+{
+	"_id" : ObjectId("57ed65d894dc917c9c3f7f72"),
+	"title" : "GSMArena",
+	"description" : "Device Specifications",
+	"by" : "Gsm arena",
+	"likes" : 57,
+	"url" : "http://gsmarena.com",
+	"tags" : [
+		"mobiles",
+		"devices",
+		"specifications",
+		"Smartphones"
+	],
+	"comments" : [
+		{
+			"user" : "user451",
+			"message" : "Nice",
+			"date_created" : ISODate("2014-02-17T18:30:00Z"),
+			"likes" : 11
+		}
+	]
+}
+{
+	"_id" : ObjectId("57ed667194dc917c9c3f7f73"),
+	"title" : "Firstlight Couriers",
+	"description" : "International Couriers",
+	"by" : "Firstflight",
+	"likes" : 325,
+	"url" : "http://firstflight.net",
+	"tags" : [
+		"booking",
+		"courier",
+		"international"
+	],
+	"comments" : [
+		{
+			"user" : "user4",
+			"message" : "True that!",
+			"date_created" : ISODate("2014-03-18T18:30:00Z"),
+			"likes" : 12
+		}
+	]
+}
+{
+	"_id" : ObjectId("57ed6b192d5fd28646b623f5"),
+	"url" : "http://techradar.com"
+}
+> 
+> 
+> db.sites.find({"tags":"devices"});
+{ "_id" : ObjectId("57ed652794dc917c9c3f7f71"), "title" : "GadgetGuru", "description" : "Device Reviews", "by" : "NDTV Network", "likes" : 587, "url" : "http://gadgets.ndtv.com", "tags" : [ "technology", "devices", "reviews" ], "comments" : [ { "user" : "user1", "message" : "Greate article", "date_created" : ISODate("2015-05-07T18:30:00Z"), "likes" : 17 } ] }
+{ "_id" : ObjectId("57ed65d894dc917c9c3f7f72"), "title" : "GSMArena", "description" : "Device Specifications", "by" : "Gsm arena", "likes" : 57, "url" : "http://gsmarena.com", "tags" : [ "mobiles", "devices", "specifications", "Smartphones" ], "comments" : [ { "user" : "user451", "message" : "Nice", "date_created" : ISODate("2014-02-17T18:30:00Z"), "likes" : 11 } ] }
+> db.sites.find({"tags":"devices"}).pretty();
+{
+	"_id" : ObjectId("57ed652794dc917c9c3f7f71"),
+	"title" : "GadgetGuru",
+	"description" : "Device Reviews",
+	"by" : "NDTV Network",
+	"likes" : 587,
+	"url" : "http://gadgets.ndtv.com",
+	"tags" : [
+		"technology",
+		"devices",
+		"reviews"
+	],
+	"comments" : [
+		{
+			"user" : "user1",
+			"message" : "Greate article",
+			"date_created" : ISODate("2015-05-07T18:30:00Z"),
+			"likes" : 17
+		}
+	]
+}
+{
+	"_id" : ObjectId("57ed65d894dc917c9c3f7f72"),
+	"title" : "GSMArena",
+	"description" : "Device Specifications",
+	"by" : "Gsm arena",
+	"likes" : 57,
+	"url" : "http://gsmarena.com",
+	"tags" : [
+		"mobiles",
+		"devices",
+		"specifications",
+		"Smartphones"
+	],
+	"comments" : [
+		{
+			"user" : "user451",
+			"message" : "Nice",
+			"date_created" : ISODate("2014-02-17T18:30:00Z"),
+			"likes" : 11
+		}
+	]
+}
+> 
+> db.sites.find({"likes":{"$gte":200}}).pretty();
+{
+	"_id" : ObjectId("57ed652794dc917c9c3f7f71"),
+	"title" : "GadgetGuru",
+	"description" : "Device Reviews",
+	"by" : "NDTV Network",
+	"likes" : 587,
+	"url" : "http://gadgets.ndtv.com",
+	"tags" : [
+		"technology",
+		"devices",
+		"reviews"
+	],
+	"comments" : [
+		{
+			"user" : "user1",
+			"message" : "Greate article",
+			"date_created" : ISODate("2015-05-07T18:30:00Z"),
+			"likes" : 17
+		}
+	]
+}
+{
+	"_id" : ObjectId("57ed667194dc917c9c3f7f73"),
+	"title" : "Firstlight Couriers",
+	"description" : "International Couriers",
+	"by" : "Firstflight",
+	"likes" : 325,
+	"url" : "http://firstflight.net",
+	"tags" : [
+		"booking",
+		"courier",
+		"international"
+	],
+	"comments" : [
+		{
+			"user" : "user4",
+			"message" : "True that!",
+			"date_created" : ISODate("2014-03-18T18:30:00Z"),
+			"likes" : 12
+		}
+	]
+}
+> 
+> 
+> db.sites.find({"title":/^M/}).pretty();
+> db.sites.find({"title":/^F/}).pretty();
+{
+	"_id" : ObjectId("57ed667194dc917c9c3f7f73"),
+	"title" : "Firstlight Couriers",
+	"description" : "International Couriers",
+	"by" : "Firstflight",
+	"likes" : 325,
+	"url" : "http://firstflight.net",
+	"tags" : [
+		"booking",
+		"courier",
+		"international"
+	],
+	"comments" : [
+		{
+			"user" : "user4",
+			"message" : "True that!",
+			"date_created" : ISODate("2014-03-18T18:30:00Z"),
+			"likes" : 12
+		}
+	]
+}
+> 
+> 
+> db.sites.find({"title":/Guru/}).pretty();
+{
+	"_id" : ObjectId("57ed652794dc917c9c3f7f71"),
+	"title" : "GadgetGuru",
+	"description" : "Device Reviews",
+	"by" : "NDTV Network",
+	"likes" : 587,
+	"url" : "http://gadgets.ndtv.com",
+	"tags" : [
+		"technology",
+		"devices",
+		"reviews"
+	],
+	"comments" : [
+		{
+			"user" : "user1",
+			"message" : "Greate article",
+			"date_created" : ISODate("2015-05-07T18:30:00Z"),
+			"likes" : 17
+		}
+	]
+}
+> 
+> db.sites.count();
+5
+> db.sites.insert({"title" : "Medium", "description" : "Read, Write, and interacrt", "by" : "Various", "likes" : 889,"url" : "http://medium.com", "tags" : ["read", "design", "articles"], "comments" : [{"user" : "user7", "message" : "Great site", "date_created" : new Date('September 29, 2016'), "likes" : 19 }]});
+WriteResult({ "nInserted" : 1 })
+> 
+> db.sites.count();
+6
+> 
+> db.sites.find({"tags":{"$size":4}}).pretty();
+{
+	"_id" : ObjectId("57ed65d894dc917c9c3f7f72"),
+	"title" : "GSMArena",
+	"description" : "Device Specifications",
+	"by" : "Gsm arena",
+	"likes" : 57,
+	"url" : "http://gsmarena.com",
+	"tags" : [
+		"mobiles",
+		"devices",
+		"specifications",
+		"Smartphones"
+	],
+	"comments" : [
+		{
+			"user" : "user451",
+			"message" : "Nice",
+			"date_created" : ISODate("2014-02-17T18:30:00Z"),
+			"likes" : 11
+		}
+	]
+}
+> 
+> db.sites.find({},{"title":1}).pretty();
+{ "_id" : ObjectId("57ed640a94dc917c9c3f7f70"), "title" : "Techcrunch" }
+{ "_id" : ObjectId("57ed652794dc917c9c3f7f71"), "title" : "GadgetGuru" }
+{ "_id" : ObjectId("57ed65d894dc917c9c3f7f72"), "title" : "GSMArena" }
+{
+	"_id" : ObjectId("57ed667194dc917c9c3f7f73"),
+	"title" : "Firstlight Couriers"
+}
+{ "_id" : ObjectId("57ed6b192d5fd28646b623f5") }
+{ "_id" : ObjectId("57ed6c7d94dc917c9c3f7f75"), "title" : "Medium" }
+> 
+> 
+> db.sites.find({}).sort({"title":1}).pretty();
+{
+	"_id" : ObjectId("57ed6b192d5fd28646b623f5"),
+	"url" : "http://techradar.com"
+}
+{
+	"_id" : ObjectId("57ed667194dc917c9c3f7f73"),
+	"title" : "Firstlight Couriers",
+	"description" : "International Couriers",
+	"by" : "Firstflight",
+	"likes" : 325,
+	"url" : "http://firstflight.net",
+	"tags" : [
+		"booking",
+		"courier",
+		"international"
+	],
+	"comments" : [
+		{
+			"user" : "user4",
+			"message" : "True that!",
+			"date_created" : ISODate("2014-03-18T18:30:00Z"),
+			"likes" : 12
+		}
+	]
+}
+{
+	"_id" : ObjectId("57ed65d894dc917c9c3f7f72"),
+	"title" : "GSMArena",
+	"description" : "Device Specifications",
+	"by" : "Gsm arena",
+	"likes" : 57,
+	"url" : "http://gsmarena.com",
+	"tags" : [
+		"mobiles",
+		"devices",
+		"specifications",
+		"Smartphones"
+	],
+	"comments" : [
+		{
+			"user" : "user451",
+			"message" : "Nice",
+			"date_created" : ISODate("2014-02-17T18:30:00Z"),
+			"likes" : 11
+		}
+	]
+}
+{
+	"_id" : ObjectId("57ed652794dc917c9c3f7f71"),
+	"title" : "GadgetGuru",
+	"description" : "Device Reviews",
+	"by" : "NDTV Network",
+	"likes" : 587,
+	"url" : "http://gadgets.ndtv.com",
+	"tags" : [
+		"technology",
+		"devices",
+		"reviews"
+	],
+	"comments" : [
+		{
+			"user" : "user1",
+			"message" : "Greate article",
+			"date_created" : ISODate("2015-05-07T18:30:00Z"),
+			"likes" : 17
+		}
+	]
+}
+{
+	"_id" : ObjectId("57ed6c7d94dc917c9c3f7f75"),
+	"title" : "Medium",
+	"description" : "Read, Write, and interacrt",
+	"by" : "Various",
+	"likes" : 889,
+	"url" : "http://medium.com",
+	"tags" : [
+		"read",
+		"design",
+		"articles"
+	],
+	"comments" : [
+		{
+			"user" : "user7",
+			"message" : "Great site",
+			"date_created" : ISODate("2016-09-28T18:30:00Z"),
+			"likes" : 19
+		}
+	]
+}
+{
+	"_id" : ObjectId("57ed640a94dc917c9c3f7f70"),
+	"title" : "Techcrunch",
+	"description" : "Tech site",
+	"by" : "Crunch Network",
+	"likes" : 187,
+	"url" : "http://techcrunch.com",
+	"tags" : [
+		"technology",
+		"news",
+		"startups"
+	],
+	"comments" : [ ]
+}
+> 
+> 
+> db.sites.find({"$and":[{"title":"Techcrunch",{"by":"Crunch Network"}]}).pretty();
+... ^C
+
+> db.sites.find({"$and":[{"title":"Techcrunch",{"by":"Crunch Network"}]}).pretty();
+... ^C
+
+> db.sites.find({"$or":[{"title":"Medium"},{"by":"Various"}]}).pretty();
+{
+	"_id" : ObjectId("57ed6c7d94dc917c9c3f7f75"),
+	"title" : "Medium",
+	"description" : "Read, Write, and interacrt",
+	"by" : "Various",
+	"likes" : 889,
+	"url" : "http://medium.com",
+	"tags" : [
+		"read",
+		"design",
+		"articles"
+	],
+	"comments" : [
+		{
+			"user" : "user7",
+			"message" : "Great site",
+			"date_created" : ISODate("2016-09-28T18:30:00Z"),
+			"likes" : 19
+		}
+	]
+}
+> 
+> 
+> 
+> db.sites.find({"likes":{"$gte:100}}).pretty().limit(2);
+2016-09-30T01:19:35.520+0530 E QUERY    [thread1] SyntaxError: unterminated string literal @(shell):1:24
+
+> db.sites.find({"likes":{"$gte:100"}}).pretty().limit(2);
+2016-09-30T01:19:42.779+0530 E QUERY    [thread1] SyntaxError: missing : after property id @(shell):1:34
+
+> db.sites.find({"likes":{"$gte":100}}).pretty().limit(2);
+{
+	"_id" : ObjectId("57ed640a94dc917c9c3f7f70"),
+	"title" : "Techcrunch",
+	"description" : "Tech site",
+	"by" : "Crunch Network",
+	"likes" : 187,
+	"url" : "http://techcrunch.com",
+	"tags" : [
+		"technology",
+		"news",
+		"startups"
+	],
+	"comments" : [ ]
+}
+{
+	"_id" : ObjectId("57ed652794dc917c9c3f7f71"),
+	"title" : "GadgetGuru",
+	"description" : "Device Reviews",
+	"by" : "NDTV Network",
+	"likes" : 587,
+	"url" : "http://gadgets.ndtv.com",
+	"tags" : [
+		"technology",
+		"devices",
+		"reviews"
+	],
+	"comments" : [
+		{
+			"user" : "user1",
+			"message" : "Greate article",
+			"date_created" : ISODate("2015-05-07T18:30:00Z"),
+			"likes" : 17
+		}
+	]
+}
+> 
+> 
+> db.sites.find({tags
+... :$all:["news","device"]}}).pretty();
+2016-09-30T01:21:23.602+0530 E QUERY    [thread1] SyntaxError: missing } after property list @(shell):2:5
+
+> db.sites.find({tags :{$all:["news","device"]}}).pretty();
+> db.sites.find({tags :{$all:["news","devices"]}}).pretty();
+> db.sites.find({tags :{$all:["news","startups"]}}).pretty();
+{
+	"_id" : ObjectId("57ed640a94dc917c9c3f7f70"),
+	"title" : "Techcrunch",
+	"description" : "Tech site",
+	"by" : "Crunch Network",
+	"likes" : 187,
+	"url" : "http://techcrunch.com",
+	"tags" : [
+		"technology",
+		"news",
+		"startups"
+	],
+	"comments" : [ ]
+}
+> 
+> 
+
