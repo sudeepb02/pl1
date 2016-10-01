@@ -1,0 +1,56 @@
+sudeep@sudeep-PC:~/Documents/Practicals/pl1/RAMDrive$ ls
+a.out           calculator.cpp~  output.txt      ram_driver.cpp~
+calculator.cpp  input.txt        ram_driver.cpp
+sudeep@sudeep-PC:~/Documents/Practicals/pl1/RAMDrive$ g++ ram_driver.cpp
+sudeep@sudeep-PC:~/Documents/Practicals/pl1/RAMDrive$ ./a.out 
+mkdir: cannot create directory ‘/mnt/Ram2’: File exists
+Filesystem      Size  Used Avail Use% Mounted on
+udev            969M   12K  969M   1% /dev
+tmpfs           197M  1.2M  195M   1% /run
+/dev/sda5        40G   19G   19G  51% /
+none            4.0K     0  4.0K   0% /sys/fs/cgroup
+none            5.0M     0  5.0M   0% /run/lock
+none            981M  152K  981M   1% /run/shm
+none            100M   64K  100M   1% /run/user
+/dev/sda4       149G  135G   14G  91% /media/sudeep/32FAF299FAF25915
+tmpfs           300M   12K  300M   1% /mnt/Ram2
+
+Creating Ram drive......
+Filesystem      Size  Used Avail Use% Mounted on
+udev            969M   12K  969M   1% /dev
+tmpfs           197M  1.2M  195M   1% /run
+/dev/sda5        40G   19G   19G  51% /
+none            4.0K     0  4.0K   0% /sys/fs/cgroup
+none            5.0M     0  5.0M   0% /run/lock
+none            981M  152K  981M   1% /run/shm
+none            100M   64K  100M   1% /run/user
+/dev/sda4       149G  135G   14G  91% /media/sudeep/32FAF299FAF25915
+tmpfs           300M     0  300M   0% /mnt/Ram2
+
+Copying files to new Ram drive.......
+Filesystem      Size  Used Avail Use% Mounted on
+udev            969M   12K  969M   1% /dev
+tmpfs           197M  1.2M  195M   1% /run
+/dev/sda5        40G   19G   19G  51% /
+none            4.0K     0  4.0K   0% /sys/fs/cgroup
+none            5.0M     0  5.0M   0% /run/lock
+none            981M  152K  981M   1% /run/shm
+none            100M   64K  100M   1% /run/user
+/dev/sda4       149G  135G   14G  91% /media/sudeep/32FAF299FAF25915
+tmpfs           300M   12K  300M   1% /mnt/Ram2
+SIMPLE CALCULATOR
+Two numbers are : 	12	18
+ 1.Add
+ 2.Subtract
+ 3.Multiply
+ 4.Divide
+Please enter your choice : 1
+30sudeep@sudeep-PC:~/Documents/Practicals/pl1/RAMDrive$ cat input.txt 
+12
+18
+
+sudeep@sudeep-PC:~/Documents/Practicals/pl1/RAMDrive$ cat output.txt 
+-630
+30
+sudeep@sudeep-PC:~/Documents/Practicals/pl1/RAMDrive$ 
+
