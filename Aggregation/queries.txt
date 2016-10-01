@@ -1,0 +1,381 @@
+> db.sites.find().pretty();
+{
+	"_id" : ObjectId("57ed640a94dc917c9c3f7f70"),
+	"title" : "Techcrunch",
+	"description" : "Tech site",
+	"by" : "Crunch Network",
+	"likes" : 187,
+	"url" : "http://techcrunch.com",
+	"tags" : [
+		"technology",
+		"news",
+		"startups"
+	],
+	"comments" : [ ]
+}
+{
+	"_id" : ObjectId("57ed652794dc917c9c3f7f71"),
+	"title" : "GadgetGuru",
+	"description" : "Device Reviews",
+	"by" : "NDTV Network",
+	"likes" : 587,
+	"url" : "http://gadgets.ndtv.com",
+	"tags" : [
+		"technology",
+		"devices",
+		"reviews"
+	],
+	"comments" : [
+		{
+			"user" : "user1",
+			"message" : "Greate article",
+			"date_created" : ISODate("2015-05-07T18:30:00Z"),
+			"likes" : 17
+		}
+	]
+}
+{
+	"_id" : ObjectId("57ed65d894dc917c9c3f7f72"),
+	"title" : "GSMArena",
+	"description" : "Device Specifications",
+	"by" : "Gsm arena",
+	"likes" : 57,
+	"url" : "http://gsmarena.com",
+	"tags" : [
+		"mobiles",
+		"devices",
+		"specifications",
+		"Smartphones",
+		"Smartphones",
+		"Smartphones"
+	],
+	"comments" : [
+		{
+			"user" : "user451",
+			"message" : "Nice",
+			"date_created" : ISODate("2014-02-17T18:30:00Z"),
+			"likes" : 11
+		}
+	]
+}
+{
+	"_id" : ObjectId("57ed667194dc917c9c3f7f73"),
+	"title" : "Firstlight Couriers",
+	"description" : "International Couriers",
+	"by" : "Firstflight",
+	"likes" : 325,
+	"url" : "http://firstflight.net",
+	"tags" : [
+		"booking",
+		"courier",
+		"international"
+	],
+	"comments" : [
+		{
+			"user" : "user4",
+			"message" : "True that!",
+			"date_created" : ISODate("2014-03-18T18:30:00Z"),
+			"likes" : 12
+		}
+	]
+}
+{
+	"_id" : ObjectId("57ed6b192d5fd28646b623f5"),
+	"url" : "http://techradar.com"
+}
+{
+	"_id" : ObjectId("57ed6c7d94dc917c9c3f7f75"),
+	"title" : "Medium",
+	"description" : "Read, Write, and interacrt",
+	"by" : "Various",
+	"likes" : 890,
+	"url" : "http://medium.com",
+	"tags" : [
+		"read",
+		"design",
+		"articles"
+	],
+	"comments" : [
+		{
+			"user" : "user7",
+			"message" : "Great site",
+			"date_created" : ISODate("2016-09-28T18:30:00Z"),
+			"likes" : 19
+		}
+	]
+}
+{
+	"_id" : ObjectId("57ed71f294dc917c9c3f7f76"),
+	"title" : "Techcrunch",
+	"description" : "Tech site",
+	"by" : "Crunch Network",
+	"likes" : 187,
+	"url" : "http://techcrunch.com",
+	"tags" : [
+		"technology",
+		"news",
+		"startups"
+	],
+	"comments" : [
+		{
+			"user" : "user1",
+			"message" : "Greate article",
+			"date_created" : ISODate("2014-07-07T18:30:00Z"),
+			"likes" : 7
+		}
+	]
+}
+{
+	"_id" : ObjectId("57ed71ff94dc917c9c3f7f77"),
+	"title" : "GadgetGuru",
+	"description" : "Device Reviews",
+	"by" : "NDTV Network",
+	"likes" : 587,
+	"url" : "http://gadgets.ndtv.com",
+	"tags" : [
+		"technology",
+		"devices",
+		"reviews"
+	],
+	"comments" : [
+		{
+			"user" : "user1",
+			"message" : "Greate article",
+			"date_created" : ISODate("2015-05-07T18:30:00Z"),
+			"likes" : 17
+		}
+	]
+}
+{
+	"_id" : ObjectId("57ed720694dc917c9c3f7f78"),
+	"title" : "GSMArena",
+	"description" : "Device Specifications",
+	"by" : "Gsm arena",
+	"likes" : 57,
+	"url" : "http://gsmarena.com",
+	"tags" : [
+		"mobiles",
+		"devices",
+		"specifications"
+	],
+	"comments" : [
+		{
+			"user" : "user451",
+			"message" : "Nice",
+			"date_created" : ISODate("2014-02-17T18:30:00Z"),
+			"likes" : 11
+		}
+	]
+}
+{
+	"_id" : ObjectId("57ed720d94dc917c9c3f7f79"),
+	"title" : "Firstlight Couriers",
+	"description" : "International Couriers",
+	"by" : "Firstflight",
+	"likes" : 325,
+	"url" : "http://firstflight.net",
+	"tags" : [
+		"booking",
+		"courier",
+		"international"
+	],
+	"comments" : [
+		{
+			"user" : "user4",
+			"message" : "True that!",
+			"date_created" : ISODate("2014-03-18T18:30:00Z"),
+			"likes" : 12
+		}
+	]
+}
+{
+	"_id" : ObjectId("57ed721394dc917c9c3f7f7a"),
+	"title" : "Medium",
+	"description" : "Read, Write, and interacrt",
+	"by" : "Various",
+	"likes" : 889,
+	"url" : "http://medium.com",
+	"tags" : [
+		"read",
+		"design",
+		"articles"
+	],
+	"comments" : [
+		{
+			"user" : "user7",
+			"message" : "Great site",
+			"date_created" : ISODate("2016-09-28T18:30:00Z"),
+			"likes" : 19
+		}
+	]
+}
+{
+	"_id" : ObjectId("57ed73ab2d5fd28646b623f6"),
+	"url" : "http://techradar.com"
+}
+> 
+
+==================================================================
+1. Display a list that how many tutorials are written by each user
+
+> db.sites.aggregate({"$unwind":"$comments"},{"$group":{"_id":"$comments.user","count":{"$sum":1}}});
+{ "_id" : "user4", "count" : 2 }
+{ "_id" : "user7", "count" : 2 }
+{ "_id" : "user451", "count" : 2 }
+{ "_id" : "user1", "count" : 3 }
+> 
+
+=================================================================
+2. Compute the top five urls .($sum,$sort)
+
+> db.sites.aggregate({"$group":{"_id":"$url","count":{"$sum":1}}},{"$sort":{"count":-1}});
+{ "_id" : "http://techradar.com", "count" : 2 }
+{ "_id" : "http://firstflight.net", "count" : 2 }
+{ "_id" : "http://gsmarena.com", "count" : 2 }
+{ "_id" : "http://medium.com", "count" : 2 }
+{ "_id" : "http://gadgets.ndtv.com", "count" : 2 }
+{ "_id" : "http://techcrunch.com", "count" : 2 }
+> 
+
+> 
+==================================================================
+3. Return url having likes above 500.($match,$sum)
+
+> db.sites.aggregate({"$group":{"_id":"$url","likes":{"$sum":"$likes"}}});
+{ "_id" : "http://techradar.com", "likes" : 0 }
+{ "_id" : "http://firstflight.net", "likes" : 650 }
+{ "_id" : "http://gsmarena.com", "likes" : 114 }
+{ "_id" : "http://medium.com", "likes" : 1779 }
+{ "_id" : "http://gadgets.ndtv.com", "likes" : 1174 }
+{ "_id" : "http://techcrunch.com", "likes" : 374 }
+> 
+> db.sites.aggregate({"$group":{"_id":"$url","likes":{"$sum":"$likes"}}},{"$match":{"likes":{"$gt":500}}});
+{ "_id" : "http://firstflight.net", "likes" : 650 }
+{ "_id" : "http://medium.com", "likes" : 1779 }
+{ "_id" : "http://gadgets.ndtv.com", "likes" : 1174 }
+> 
+
+===================================================================
+4. Return all 'comments' from user 'sam' .($unwind)
+
+> db.sites.aggregate({"$unwind":"$comments"},{"$match":{"comments.user":"user7"}}).pretty();
+{
+	"_id" : ObjectId("57ed6c7d94dc917c9c3f7f75"),
+	"title" : "Medium",
+	"description" : "Read, Write, and interacrt",
+	"by" : "Various",
+	"likes" : 890,
+	"url" : "http://medium.com",
+	"tags" : [
+		"read",
+		"design",
+		"articles"
+	],
+	"comments" : {
+		"user" : "user7",
+		"message" : "Great site",
+		"date_created" : ISODate("2016-09-28T18:30:00Z"),
+		"likes" : 19
+	}
+}
+{
+	"_id" : ObjectId("57ed721394dc917c9c3f7f7a"),
+	"title" : "Medium",
+	"description" : "Read, Write, and interacrt",
+	"by" : "Various",
+	"likes" : 889,
+	"url" : "http://medium.com",
+	"tags" : [
+		"read",
+		"design",
+		"articles"
+	],
+	"comments" : {
+		"user" : "user7",
+		"message" : "Great site",
+		"date_created" : ISODate("2016-09-28T18:30:00Z"),
+		"likes" : 19
+	}
+}
+> 
+======================================================================
+
+5. Find total likes for “'http: //www.tutorialspoint.com'” only.
+
+> db.sites.aggregate({"$group":{"_id":"$url","LIKES":{"$sum":"$likes"}}});
+{ "_id" : "http://techradar.com", "LIKES" : 0 }
+{ "_id" : "http://firstflight.net", "LIKES" : 650 }
+{ "_id" : "http://gsmarena.com", "LIKES" : 114 }
+{ "_id" : "http://medium.com", "LIKES" : 1779 }
+{ "_id" : "http://gadgets.ndtv.com", "LIKES" : 1174 }
+{ "_id" : "http://techcrunch.com", "LIKES" : 374 }
+> 
+> 
+> db.sites.aggregate({"$group":{"_id":"$url","LIKES":{"$sum":"$likes"}}},{"$match":{"_id":"http://techcrunch.com"}});
+{ "_id" : "http://techcrunch.com", "LIKES" : 374 }
+> 
+=====================================================================
+
+6. Get all comments created after '2012-11-22'.
+
+> db.sites.aggregate({"$unwind":"$comments"},{"$match":{"comments.date_created":{"$gt":new Date("2015-06-15T00:00:00Z")}}}).pretty();
+{
+	"_id" : ObjectId("57ed6c7d94dc917c9c3f7f75"),
+	"title" : "Medium",
+	"description" : "Read, Write, and interacrt",
+	"by" : "Various",
+	"likes" : 890,
+	"url" : "http://medium.com",
+	"tags" : [
+		"read",
+		"design",
+		"articles"
+	],
+	"comments" : {
+		"user" : "user7",
+		"message" : "Great site",
+		"date_created" : ISODate("2016-09-28T18:30:00Z"),
+		"likes" : 19
+	}
+}
+{
+	"_id" : ObjectId("57ed721394dc917c9c3f7f7a"),
+	"title" : "Medium",
+	"description" : "Read, Write, and interacrt",
+	"by" : "Various",
+	"likes" : 889,
+	"url" : "http://medium.com",
+	"tags" : [
+		"read",
+		"design",
+		"articles"
+	],
+	"comments" : {
+		"user" : "user7",
+		"message" : "Great site",
+		"date_created" : ISODate("2016-09-28T18:30:00Z"),
+		"likes" : 19
+	}
+}
+> 
+
+===========================================================================
+7. Return the Five Most Common “tags”
+
+> db.sites.aggregate({"$unwind":"$tags"},{"$group":{"_id":"$tags","count":{"$sum":1}}},{"$sort":{"count":-1}},{"$limit":5});
+{ "_id" : "technology", "count" : 4 }
+{ "_id" : "devices", "count" : 4 }
+{ "_id" : "Smartphones", "count" : 3 }
+{ "_id" : "news", "count" : 2 }
+{ "_id" : "booking", "count" : 2 }
+> 
+===========================================================================
+
+8. Get the total count of the number of comments among all users.
+
+> db.sites.aggregate({"$unwind":"$comments"},{ $group: { _id: null, count: { $sum: 1 } } }).pretty();
+{ "_id" : null, "count" : 9 }
+> 
+
+
+
