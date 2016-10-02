@@ -1,0 +1,596 @@
+WITHOUT INDEX
+
+1. Display all states having population above 1600.
+
+> db.Zips.find({"pop":{"$gt":1600}},{"state":1});
+{ "_id" : "01002", "state" : "MA" }
+{ "_id" : "01005", "state" : "MA" }
+{ "_id" : "01007", "state" : "MA" }
+{ "_id" : "01001", "state" : "MA" }
+{ "_id" : "01010", "state" : "MA" }
+{ "_id" : "01011", "state" : "MA" }
+{ "_id" : "01013", "state" : "MA" }
+{ "_id" : "01020", "state" : "MA" }
+{ "_id" : "01022", "state" : "MA" }
+{ "_id" : "01027", "state" : "MA" }
+{ "_id" : "01028", "state" : "MA" }
+{ "_id" : "01030", "state" : "MA" }
+{ "_id" : "01031", "state" : "MA" }
+{ "_id" : "01033", "state" : "MA" }
+{ "_id" : "01034", "state" : "MA" }
+{ "_id" : "01035", "state" : "MA" }
+{ "_id" : "01036", "state" : "MA" }
+{ "_id" : "01038", "state" : "MA" }
+{ "_id" : "01040", "state" : "MA" }
+{ "_id" : "01050", "state" : "MA" }
+Type "it" for more
+> db.Zips.find({"pop":{"$gt":1600}},{"state":1}).explain();
+{
+	"queryPlanner" : {
+		"plannerVersion" : 1,
+		"namespace" : "BasicQuery.Zips",
+		"indexFilterSet" : false,
+		"parsedQuery" : {
+			"pop" : {
+				"$gt" : 1600
+			}
+		},
+		"winningPlan" : {
+			"stage" : "PROJECTION",
+			"transformBy" : {
+				"state" : 1
+			},
+			"inputStage" : {
+				"stage" : "COLLSCAN",
+				"filter" : {
+					"pop" : {
+						"$gt" : 1600
+					}
+				},
+				"direction" : "forward"
+			}
+		},
+		"rejectedPlans" : [ ]
+	},
+	"serverInfo" : {
+		"host" : "abc-Vostro-3546",
+		"port" : 27017,
+		"version" : "3.0.12",
+		"gitVersion" : "33934938e0e95d534cebbaff656cde916b9c3573"
+	},
+	"ok" : 1
+}
+> 
+
+
+2. Display all cities having population above 1600.
+
+
+> db.Zips.find({"pop":{"$gt":1600}},{"city":1});
+{ "_id" : "01002", "city" : "CUSHMAN" }
+{ "_id" : "01005", "city" : "BARRE" }
+{ "_id" : "01007", "city" : "BELCHERTOWN" }
+{ "_id" : "01001", "city" : "AGAWAM" }
+{ "_id" : "01010", "city" : "BRIMFIELD" }
+{ "_id" : "01011", "city" : "CHESTER" }
+{ "_id" : "01013", "city" : "CHICOPEE" }
+{ "_id" : "01020", "city" : "CHICOPEE" }
+{ "_id" : "01022", "city" : "WESTOVER AFB" }
+{ "_id" : "01027", "city" : "MOUNT TOM" }
+{ "_id" : "01028", "city" : "EAST LONGMEADOW" }
+{ "_id" : "01030", "city" : "FEEDING HILLS" }
+{ "_id" : "01031", "city" : "GILBERTVILLE" }
+{ "_id" : "01033", "city" : "GRANBY" }
+{ "_id" : "01034", "city" : "TOLLAND" }
+{ "_id" : "01035", "city" : "HADLEY" }
+{ "_id" : "01036", "city" : "HAMPDEN" }
+{ "_id" : "01038", "city" : "HATFIELD" }
+{ "_id" : "01040", "city" : "HOLYOKE" }
+{ "_id" : "01050", "city" : "HUNTINGTON" }
+Type "it" for more
+> db.Zips.find({"pop":{"$gt":1600}},{"city":1}).explain();
+{
+	"queryPlanner" : {
+		"plannerVersion" : 1,
+		"namespace" : "BasicQuery.Zips",
+		"indexFilterSet" : false,
+		"parsedQuery" : {
+			"pop" : {
+				"$gt" : 1600
+			}
+		},
+		"winningPlan" : {
+			"stage" : "PROJECTION",
+			"transformBy" : {
+				"city" : 1
+			},
+			"inputStage" : {
+				"stage" : "COLLSCAN",
+				"filter" : {
+					"pop" : {
+						"$gt" : 1600
+					}
+				},
+				"direction" : "forward"
+			}
+		},
+		"rejectedPlans" : [ ]
+	},
+	"serverInfo" : {
+		"host" : "abc-Vostro-3546",
+		"port" : 27017,
+		"version" : "3.0.12",
+		"gitVersion" : "33934938e0e95d534cebbaff656cde916b9c3573"
+	},
+	"ok" : 1
+}
+> 
+
+
+3. Display all cities in state “KS”.
+
+db.Zips.find({"state":"KS"},{"city":1});
+{ "_id" : "66002", "city" : "ATCHISON" }
+{ "_id" : "66007", "city" : "BASEHOR" }
+{ "_id" : "66006", "city" : "BALDWIN CITY" }
+{ "_id" : "66010", "city" : "BLUE MOUND" }
+{ "_id" : "66013", "city" : "BUCYRUS" }
+{ "_id" : "66014", "city" : "CENTERVILLE" }
+{ "_id" : "66012", "city" : "LAKE OF THE FORE" }
+{ "_id" : "66016", "city" : "CUMMINGS" }
+{ "_id" : "66017", "city" : "DENTON" }
+{ "_id" : "66018", "city" : "DE SOTO" }
+{ "_id" : "66008", "city" : "BENDENA" }
+{ "_id" : "66021", "city" : "EDGERTON" }
+{ "_id" : "66023", "city" : "EFFINGHAM" }
+{ "_id" : "66020", "city" : "EASTON" }
+{ "_id" : "66015", "city" : "COLONY" }
+{ "_id" : "66027", "city" : "FORT LEAVENWORTH" }
+{ "_id" : "66025", "city" : "EUDORA" }
+{ "_id" : "66031", "city" : "INDUSTRIAL AIRPO" }
+{ "_id" : "66030", "city" : "GARDNER" }
+{ "_id" : "66033", "city" : "GREELEY" }
+Type "it" for more
+> db.Zips.find({"state":"KS"},{"city":1}).explain();
+{
+	"queryPlanner" : {
+		"plannerVersion" : 1,
+		"namespace" : "BasicQuery.Zips",
+		"indexFilterSet" : false,
+		"parsedQuery" : {
+			"state" : {
+				"$eq" : "KS"
+			}
+		},
+		"winningPlan" : {
+			"stage" : "PROJECTION",
+			"transformBy" : {
+				"city" : 1
+			},
+			"inputStage" : {
+				"stage" : "COLLSCAN",
+				"filter" : {
+					"state" : {
+						"$eq" : "KS"
+					}
+				},
+				"direction" : "forward"
+			}
+		},
+		"rejectedPlans" : [ ]
+	},
+	"serverInfo" : {
+		"host" : "abc-Vostro-3546",
+		"port" : 27017,
+		"version" : "3.0.12",
+		"gitVersion" : "33934938e0e95d534cebbaff656cde916b9c3573"
+	},
+	"ok" : 1
+}
+> 
+
+4. Display location of city "TIMKEN"
+
+> db.Zips.find({"city":"TIMKEN"},{"loc":1});
+{ "_id" : "67582", "loc" : [ -99.190154, 38.445489 ] }
+> db.Zips.find({"city":"TIMKEN"},{"loc":1}).explain();
+{
+	"queryPlanner" : {
+		"plannerVersion" : 1,
+		"namespace" : "BasicQuery.Zips",
+		"indexFilterSet" : false,
+		"parsedQuery" : {
+			"city" : {
+				"$eq" : "TIMKEN"
+			}
+		},
+		"winningPlan" : {
+			"stage" : "PROJECTION",
+			"transformBy" : {
+				"loc" : 1
+			},
+			"inputStage" : {
+				"stage" : "COLLSCAN",
+				"filter" : {
+					"city" : {
+						"$eq" : "TIMKEN"
+					}
+				},
+				"direction" : "forward"
+			}
+		},
+		"rejectedPlans" : [ ]
+	},
+	"serverInfo" : {
+		"host" : "abc-Vostro-3546",
+		"port" : 27017,
+		"version" : "3.0.12",
+		"gitVersion" : "33934938e0e95d534cebbaff656cde916b9c3573"
+	},
+	"ok" : 1
+}
+> 
+
+CREATING INDICES
+
+1. Display all states having population above 1600.
+
+> db.Zips.ensureIndex({"pop":-1});
+{
+	"createdCollectionAutomatically" : false,
+	"numIndexesBefore" : 2,
+	"numIndexesAfter" : 3,
+	"ok" : 1
+}
+> db.Zips.ensureIndex({"loc":-1});
+{
+	"createdCollectionAutomatically" : false,
+	"numIndexesBefore" : 3,
+	"numIndexesAfter" : 4,
+	"ok" : 1
+}
+> db.Zips.ensureIndex({"state":1,"city":1});
+{
+	"createdCollectionAutomatically" : false,
+	"numIndexesBefore" : 4,
+	"numIndexesAfter" : 5,
+	"ok" : 1
+}
+> db.Zips.find({"pop":{"$gt":1600}},{"state":1});
+{ "_id" : "17237", "state" : "PA" }
+{ "_id" : "30557", "state" : "GA" }
+{ "_id" : "49880", "state" : "MI" }
+{ "_id" : "60531", "state" : "IL" }
+{ "_id" : "64473", "state" : "MO" }
+{ "_id" : "62474", "state" : "IL" }
+{ "_id" : "76693", "state" : "TX" }
+{ "_id" : "02575", "state" : "MA" }
+{ "_id" : "52554", "state" : "IA" }
+{ "_id" : "78151", "state" : "TX" }
+{ "_id" : "10537", "state" : "NY" }
+{ "_id" : "24555", "state" : "VA" }
+{ "_id" : "62009", "state" : "IL" }
+{ "_id" : "63339", "state" : "MO" }
+{ "_id" : "68729", "state" : "NE" }
+{ "_id" : "91330", "state" : "CA" }
+{ "_id" : "21780", "state" : "MD" }
+{ "_id" : "41862", "state" : "KY" }
+{ "_id" : "72039", "state" : "AR" }
+{ "_id" : "72932", "state" : "AR" }
+Type "it" for more
+> db.Zips.find({"pop":{"$gt":1600}},{"state":1}).explain();
+{
+	"queryPlanner" : {
+		"plannerVersion" : 1,
+		"namespace" : "BasicQuery.Zips",
+		"indexFilterSet" : false,
+		"parsedQuery" : {
+			"pop" : {
+				"$gt" : 1600
+			}
+		},
+		"winningPlan" : {
+			"stage" : "PROJECTION",
+			"transformBy" : {
+				"state" : 1
+			},
+			"inputStage" : {
+				"stage" : "FETCH",
+				"inputStage" : {
+					"stage" : "IXSCAN",
+					"keyPattern" : {
+						"pop" : 1
+					},
+					"indexName" : "pop_1",
+					"isMultiKey" : false,
+					"direction" : "forward",
+					"indexBounds" : {
+						"pop" : [
+							"(1600.0, inf.0]"
+						]
+					}
+				}
+			}
+		},
+		"rejectedPlans" : [
+			{
+				"stage" : "PROJECTION",
+				"transformBy" : {
+					"state" : 1
+				},
+				"inputStage" : {
+					"stage" : "FETCH",
+					"inputStage" : {
+						"stage" : "IXSCAN",
+						"keyPattern" : {
+							"pop" : -1
+						},
+						"indexName" : "pop_-1",
+						"isMultiKey" : false,
+						"direction" : "forward",
+						"indexBounds" : {
+							"pop" : [
+								"[inf.0, 1600.0)"
+							]
+						}
+					}
+				}
+			}
+		]
+	},
+	"serverInfo" : {
+		"host" : "abc-Vostro-3546",
+		"port" : 27017,
+		"version" : "3.0.12",
+		"gitVersion" : "33934938e0e95d534cebbaff656cde916b9c3573"
+	},
+	"ok" : 1
+}
+> db.Zips.find({"pop":{"$gt":1600}},{"city":1});
+{ "_id" : "17237", "city" : "MONT ALTO" }
+{ "_id" : "30557", "city" : "MARTIN" }
+{ "_id" : "49880", "city" : "ROCK" }
+{ "_id" : "60531", "city" : "LELAND" }
+{ "_id" : "64473", "city" : "OREGON" }
+{ "_id" : "62474", "city" : "WESTFIELD" }
+{ "_id" : "76693", "city" : "WORTHAM" }
+{ "_id" : "02575", "city" : "WEST TISBURY" }
+{ "_id" : "52554", "city" : "ELDON" }
+{ "_id" : "78151", "city" : "RUNGE" }
+{ "_id" : "10537", "city" : "LAKE PEEKSKILL" }
+{ "_id" : "24555", "city" : "GLASGOW" }
+{ "_id" : "62009", "city" : "BENLD" }
+{ "_id" : "63339", "city" : "CURRYVILLE" }
+{ "_id" : "68729", "city" : "CREIGHTON" }
+{ "_id" : "91330", "city" : "CALIFORNIA STATE" }
+{ "_id" : "21780", "city" : "SABILLASVILLE" }
+{ "_id" : "41862", "city" : "DRY CREEK" }
+{ "_id" : "72039", "city" : "TWIN GROVES" }
+{ "_id" : "72932", "city" : "CEDARVILLE" }
+Type "it" for more
+> db.Zips.find({"pop":{"$gt":1600}},{"city":1}).explain();
+{
+	"queryPlanner" : {
+		"plannerVersion" : 1,
+		"namespace" : "BasicQuery.Zips",
+		"indexFilterSet" : false,
+		"parsedQuery" : {
+			"pop" : {
+				"$gt" : 1600
+			}
+		},
+		"winningPlan" : {
+			"stage" : "PROJECTION",
+			"transformBy" : {
+				"city" : 1
+			},
+			"inputStage" : {
+				"stage" : "FETCH",
+				"inputStage" : {
+					"stage" : "IXSCAN",
+					"keyPattern" : {
+						"pop" : 1
+					},
+					"indexName" : "pop_1",
+					"isMultiKey" : false,
+					"direction" : "forward",
+					"indexBounds" : {
+						"pop" : [
+							"(1600.0, inf.0]"
+						]
+					}
+				}
+			}
+		},
+		"rejectedPlans" : [
+			{
+				"stage" : "PROJECTION",
+				"transformBy" : {
+					"city" : 1
+				},
+				"inputStage" : {
+					"stage" : "FETCH",
+					"inputStage" : {
+						"stage" : "IXSCAN",
+						"keyPattern" : {
+							"pop" : -1
+						},
+						"indexName" : "pop_-1",
+						"isMultiKey" : false,
+						"direction" : "forward",
+						"indexBounds" : {
+							"pop" : [
+								"[inf.0, 1600.0)"
+							]
+						}
+					}
+				}
+			}
+		]
+	},
+	"serverInfo" : {
+		"host" : "abc-Vostro-3546",
+		"port" : 27017,
+		"version" : "3.0.12",
+		"gitVersion" : "33934938e0e95d534cebbaff656cde916b9c3573"
+	},
+	"ok" : 1
+}
+> db.Zips.find({"state":"KS"},{"city":1});
+{ "_id" : "67510", "city" : "ABBYVILLE" }
+{ "_id" : "67410", "city" : "ABILENE" }
+{ "_id" : "67414", "city" : "ADA" }
+{ "_id" : "66830", "city" : "ADMIRE" }
+{ "_id" : "66930", "city" : "AGENDA" }
+{ "_id" : "67621", "city" : "AGRA" }
+{ "_id" : "67839", "city" : "ALAMOTA" }
+{ "_id" : "67511", "city" : "ALBERT" }
+{ "_id" : "67512", "city" : "ALDEN" }
+{ "_id" : "67513", "city" : "ALEXANDER" }
+{ "_id" : "66401", "city" : "ALMA" }
+{ "_id" : "67622", "city" : "ALMENA" }
+{ "_id" : "66834", "city" : "ALTA VISTA" }
+{ "_id" : "67330", "city" : "ALTAMONT" }
+{ "_id" : "67623", "city" : "ALTON" }
+{ "_id" : "66710", "city" : "ALTOONA" }
+{ "_id" : "66835", "city" : "AMERICUS" }
+{ "_id" : "66931", "city" : "AMES" }
+{ "_id" : "67001", "city" : "ANDALE" }
+{ "_id" : "67002", "city" : "ANDOVER" }
+Type "it" for more
+> db.Zips.find({"state":"KS"},{"city":1}).explain();
+{
+	"queryPlanner" : {
+		"plannerVersion" : 1,
+		"namespace" : "BasicQuery.Zips",
+		"indexFilterSet" : false,
+		"parsedQuery" : {
+			"state" : {
+				"$eq" : "KS"
+			}
+		},
+		"winningPlan" : {
+			"stage" : "PROJECTION",
+			"transformBy" : {
+				"city" : 1
+			},
+			"inputStage" : {
+				"stage" : "FETCH",
+				"inputStage" : {
+					"stage" : "IXSCAN",
+					"keyPattern" : {
+						"state" : 1,
+						"city" : 1
+					},
+					"indexName" : "state_1_city_1",
+					"isMultiKey" : false,
+					"direction" : "forward",
+					"indexBounds" : {
+						"state" : [
+							"[\"KS\", \"KS\"]"
+						],
+						"city" : [
+							"[MinKey, MaxKey]"
+						]
+					}
+				}
+			}
+		},
+		"rejectedPlans" : [ ]
+	},
+	"serverInfo" : {
+		"host" : "abc-Vostro-3546",
+		"port" : 27017,
+		"version" : "3.0.12",
+		"gitVersion" : "33934938e0e95d534cebbaff656cde916b9c3573"
+	},
+	"ok" : 1
+}
+> db.Zips.find({"state":"KS"},{"city":1}).explain();
+{
+	"queryPlanner" : {
+		"plannerVersion" : 1,
+		"namespace" : "BasicQuery.Zips",
+		"indexFilterSet" : false,
+		"parsedQuery" : {
+			"state" : {
+				"$eq" : "KS"
+			}
+		},
+		"winningPlan" : {
+			"stage" : "PROJECTION",
+			"transformBy" : {
+				"city" : 1
+			},
+			"inputStage" : {
+				"stage" : "FETCH",
+				"inputStage" : {
+					"stage" : "IXSCAN",
+					"keyPattern" : {
+						"state" : 1,
+						"city" : 1
+					},
+					"indexName" : "state_1_city_1",
+					"isMultiKey" : false,
+					"direction" : "forward",
+					"indexBounds" : {
+						"state" : [
+							"[\"KS\", \"KS\"]"
+						],
+						"city" : [
+							"[MinKey, MaxKey]"
+						]
+					}
+				}
+			}
+		},
+		"rejectedPlans" : [ ]
+	},
+	"serverInfo" : {
+		"host" : "abc-Vostro-3546",
+		"port" : 27017,
+		"version" : "3.0.12",
+		"gitVersion" : "33934938e0e95d534cebbaff656cde916b9c3573"
+	},
+	"ok" : 1
+}
+> db.Zips.find({"city":"TIMKEN"},{"loc":1});
+{ "_id" : "67582", "loc" : [ -99.190154, 38.445489 ] }
+> db.Zips.find({"city":"TIMKEN"},{"loc":1}).explain();
+{
+	"queryPlanner" : {
+		"plannerVersion" : 1,
+		"namespace" : "BasicQuery.Zips",
+		"indexFilterSet" : false,
+		"parsedQuery" : {
+			"city" : {
+				"$eq" : "TIMKEN"
+			}
+		},
+		"winningPlan" : {
+			"stage" : "PROJECTION",
+			"transformBy" : {
+				"loc" : 1
+			},
+			"inputStage" : {
+				"stage" : "COLLSCAN",
+				"filter" : {
+					"city" : {
+						"$eq" : "TIMKEN"
+					}
+				},
+				"direction" : "forward"
+			}
+		},
+		"rejectedPlans" : [ ]
+	},
+	"serverInfo" : {
+		"host" : "abc-Vostro-3546",
+		"port" : 27017,
+		"version" : "3.0.12",
+		"gitVersion" : "33934938e0e95d534cebbaff656cde916b9c3573"
+	},
+	"ok" : 1
+}
+> 
+
