@@ -20,9 +20,9 @@ public class Mongo {
 		try{
 		//Establish a connection with mongoDb server
 		MongoClient c=new MongoClient("localhost",27017);
-		MongoDatabase db=c.getDatabase("db83");
+		MongoDatabase db=c.getDatabase("Blogsite");
 		System.out.println("Connection established successfully");
-		MongoCollection<Document> col=db.getCollection("blog");
+		MongoCollection<Document> col=db.getCollection("sites");
 		int ex=0;
 		String title;
 		while (ex==0){
@@ -50,7 +50,7 @@ public class Mongo {
 				Document ed=new Document();
 				ed.append("user", "user1");
 				ed.append("message", "I am DBA");
-				ed.append("dateCreated", new Date(2015, 10, 31));
+				ed.append("date_created", new Date(2015, 10, 31));
 				ed.append("likes", 20);
 				aed.add(ed);
 				doc.append("comments", aed);
