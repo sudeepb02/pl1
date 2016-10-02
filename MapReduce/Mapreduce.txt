@@ -1,0 +1,225 @@
+> show databases;
+Blogsite  0.000GB
+file      0.005GB
+local     0.000GB
+> use person
+switched to db person
+> show databases;
+Blogsite  0.000GB
+file      0.005GB
+local     0.000GB
+> create collection details;
+2016-10-02T11:49:31.165+0530 E QUERY    [thread1] SyntaxError: missing ; before statement @(shell):1:7
+
+> use person;
+switched to db person
+> show databases;
+Blogsite  0.000GB
+file      0.005GB
+local     0.000GB
+> db.details.insert({"name":"Sudeep","email":"sudeepbiswas02@gmail.com","work":"MIT","age":"20","gender":"Male","salary":"5000000","hobbies":["music","movies","playing","reading","dancing"]});
+WriteResult({ "nInserted" : 1 })
+> show databases;
+Blogsite  0.000GB
+file      0.005GB
+local     0.000GB
+person    0.000GB
+> 
+
+> db.details.insert({"name":"Hritik","email":"hritik123@gmail.com","work":"actor","age":"38","gender":"Male","salary":"30000","hobbies":["dancing","cooking","aerobics","acting"]});
+WriteResult({ "nInserted" : 1 })
+> 
+> > db.details.insert({"name":"Hritik","email":"hritik123@gmail.com","work":"actor","age":"38","gender":"Male","salary":"30000","hobbies":["dancing","cooking","aerobics","acting"]});
+2016-10-02T23:50:37.982+0530 E QUERY    [thread1] SyntaxError: expected expression, got '>' @(shell):1:0
+
+> > db.details.insert({"name":"Hritik","email":"hritik123@gmail.com","work":"actor","age":"38","gender":"Male","salary":"30000","hobbies":["dancing","cooking","aerobics","acting"]});
+2016-10-02T23:50:44.332+0530 E QUERY    [thread1] SyntaxError: expected expression, got '>' @(shell):1:0
+
+> > db.details.insert({"name":"Shahrukh","email":"shahrukh123@gmail.com","work":"actor","age":"43","gender":"Male","salary":"20000","hobbies":["writing","reading","singing","acting"]});
+2016-10-02T23:51:48.105+0530 E QUERY    [thread1] SyntaxError: expected expression, got '>' @(shell):1:0
+
+> db.details.insert({"name":"Shahrukh","email":"shahrukh123@gmail.com","work":"actor","age":"43","gender":"Male","salary":"20000","hobbies":["writing","reading","singing","acting"]});
+WriteResult({ "nInserted" : 1 })
+> 
+> db.details.insert({"name":"Chris","email":"chris123@gmail.com","work":"actor","age":"29","gender":"Male","salary":"60000","hobbies":["reading","aerobics","acting","dancing"]});
+WriteResult({ "nInserted" : 1 })
+> db.details.insert({"name":"Red","email":"red123@gmail.com","work":"actor","age":"45","gender":"Male","salary":"40000","hobbies":["reading","writing","acting","drinking","cooking","killing"]});
+WriteResult({ "nInserted" : 1 })
+> 
+
+> db.details.insert({"name":"Megan","email":"megan123@gmail.com","work":"actor","age":"23","gender":"Female","salary":"50000","hobbies":["reading","writing","acting","cooking","singing"]});
+WriteResult({ "nInserted" : 1 })
+> db.details.insert({"name":"Kaplan","email":"kaplan123@gmail.com","work":"actor","age":"43","gender":"Female","salary":"20000","hobbies":["smoking","writing","acting","cooking","singing"]});
+WriteResult({ "nInserted" : 1 })
+> 
+
+> db.details.find().pretty();
+{
+	"_id" : ObjectId("57f0a9a3e59237b8afae3306"),
+	"name" : "Sudeep",
+	"email" : "sudeepbiswas02@gmail.com",
+	"work" : "MIT",
+	"age" : "20",
+	"gender" : "Male",
+	"salary" : "5000000",
+	"hobbies" : [
+		"music",
+		"movies",
+		"playing",
+		"reading",
+		"dancing"
+	]
+}
+{
+	"_id" : ObjectId("57f14fed3b64fe16f0598c01"),
+	"name" : "Hritik",
+	"email" : "hritik123@gmail.com",
+	"work" : "actor",
+	"age" : "38",
+	"gender" : "Male",
+	"salary" : "30000",
+	"hobbies" : [
+		"dancing",
+		"cooking",
+		"aerobics",
+		"acting"
+	]
+}
+{
+	"_id" : ObjectId("57f1504c3b64fe16f0598c02"),
+	"name" : "Shahrukh",
+	"email" : "shahrukh123@gmail.com",
+	"work" : "actor",
+	"age" : "43",
+	"gender" : "Male",
+	"salary" : "20000",
+	"hobbies" : [
+		"writing",
+		"reading",
+		"singing",
+		"acting"
+	]
+}
+{
+	"_id" : ObjectId("57f151573b64fe16f0598c03"),
+	"name" : "Chris",
+	"email" : "chris123@gmail.com",
+	"work" : "actor",
+	"age" : "29",
+	"gender" : "Male",
+	"salary" : "60000",
+	"hobbies" : [
+		"reading",
+		"aerobics",
+		"acting",
+		"dancing"
+	]
+}
+{
+	"_id" : ObjectId("57f151a13b64fe16f0598c04"),
+	"name" : "Red",
+	"email" : "red123@gmail.com",
+	"work" : "actor",
+	"age" : "45",
+	"gender" : "Male",
+	"salary" : "40000",
+	"hobbies" : [
+		"reading",
+		"writing",
+		"acting",
+		"drinking",
+		"cooking",
+		"killing"
+	]
+}
+{
+	"_id" : ObjectId("57f152193b64fe16f0598c05"),
+	"name" : "Megan",
+	"email" : "megan123@gmail.com",
+	"work" : "actor",
+	"age" : "23",
+	"gender" : "Female",
+	"salary" : "50000",
+	"hobbies" : [
+		"reading",
+		"writing",
+		"acting",
+		"cooking",
+		"singing"
+	]
+}
+{
+	"_id" : ObjectId("57f152483b64fe16f0598c06"),
+	"name" : "Kaplan",
+	"email" : "kaplan123@gmail.com",
+	"work" : "actor",
+	"age" : "43",
+	"gender" : "Female",
+	"salary" : "20000",
+	"hobbies" : [
+		"smoking",
+		"writing",
+		"acting",
+		"cooking",
+		"singing"
+	]
+}
+> 
+
+==========================================================================
+1.Get the count of Males and Females
+
+> var mapper = function(){emit(this.gender,1);};
+> var reducer = function(gender,count){return Array.sum(count); };
+> db.details.mapReduce(mapper,reducer,{out:"Results"});
+{
+	"result" : "Results",
+	"timeMillis" : 669,
+	"counts" : {
+		"input" : 7,
+		"emit" : 7,
+		"reduce" : 2,
+		"output" : 2
+	},
+	"ok" : 1
+}
+> db.Results.find().pretty();
+{ "_id" : "Female", "value" : 2 }
+{ "_id" : "Male", "value" : 5 }
+> 
+
+===========================================================================
+2.Count the number of users in each hobby
+
+> var mapper = function(){for(var i=0;i<this.hobbies.length;i++){emit(this.hobbies[i],1)}};
+> var reducer = function(hobbies,count){return Array.sum(count);};
+> db.details.mapReduce(mapper,reducer,{out:"Results"});
+{
+	"result" : "Results",
+	"timeMillis" : 646,
+	"counts" : {
+		"input" : 7,
+		"emit" : 33,
+		"reduce" : 7,
+		"output" : 13
+	},
+	"ok" : 1
+}
+> db.Results.find().pretty();
+{ "_id" : "acting", "value" : 6 }
+{ "_id" : "aerobics", "value" : 2 }
+{ "_id" : "cooking", "value" : 4 }
+{ "_id" : "dancing", "value" : 3 }
+{ "_id" : "drinking", "value" : 1 }
+{ "_id" : "killing", "value" : 1 }
+{ "_id" : "movies", "value" : 1 }
+{ "_id" : "music", "value" : 1 }
+{ "_id" : "playing", "value" : 1 }
+{ "_id" : "reading", "value" : 5 }
+{ "_id" : "singing", "value" : 3 }
+{ "_id" : "smoking", "value" : 1 }
+{ "_id" : "writing", "value" : 4 }
+> exit
+bye
+sudeep@sudeep-PC:~$ 
+
