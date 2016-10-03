@@ -1,135 +1,99 @@
- 1.Display all guests
- 2.Add a guest
- 3.Delete
- 4.Update details
- 5.Exit
-Please enter your choice : 1
-Guest No.	 Name 		Address
+import java.io.*;
+import java.util.*;
+import java.sql.*;
 
-1		Sudeep		Jalgaon
-2		Gaurav		Pune
-3		Don		London
-5		Paul		London
-6		Mona		Antarctica
-7		Carel		London
-
-
- 1.Display all guests
- 2.Add a guest
- 3.Delete
- 4.Update details
- 5.Exit
-Please enter your choice : 2
-Enter guest number : 101
-Enter name of guest : Anonymous
-Enter address : China
-Query OK. 1 rows affected
- 1.Display all guests
- 2.Add a guest
- 3.Delete
- 4.Update details
- 5.Exit
-Please enter your choice : 1
-Guest No.	 Name 		Address
-
-1		Sudeep		Jalgaon
-2		Gaurav		Pune
-3		Don		London
-5		Paul		London
-6		Mona		Antarctica
-7		Carel		London
-101		Anonymous		China
-
-
- 1.Display all guests
- 2.Add a guest
- 3.Delete
- 4.Update details
- 5.Exit
-Please enter your choice : 2
-Enter guest number : 8
-Enter name of guest : Mr. Robot
-Enter address : USA
-Query OK. 1 rows affected
- 1.Display all guests
- 2.Add a guest
- 3.Delete
- 4.Update details
- 5.Exit
-Please enter your choice : 1
-Guest No.	 Name 		Address
-
-1		Sudeep		Jalgaon
-2		Gaurav		Pune
-3		Don		London
-5		Paul		London
-6		Mona		Antarctica
-7		Carel		London
-8		Mr. Robot		USA
-101		Anonymous		China
-
-
- 1.Display all guests
- 2.Add a guest
- 3.Delete
- 4.Update details
- 5.Exit
-Please enter your choice : 4
-Enter guest number to be updated : 
-101
-Enter new name of guest : 
-Anonymous
-Enter address : 
-Pakistan
-Query OK. 1 rows affected
- 1.Display all guests
- 2.Add a guest
- 3.Delete
- 4.Update details
- 5.Exit
-Please enter your choice : 1
-Guest No.	 Name 		Address
-
-1		Sudeep		Jalgaon
-2		Gaurav		Pune
-3		Don		London
-5		Paul		London
-6		Mona		Antarctica
-7		Carel		London
-8		Mr. Robot		USA
-101		Anonymous		Pakistan
-
-
- 1.Display all guests
- 2.Add a guest
- 3.Delete
- 4.Update details
- 5.Exit
-Please enter your choice : 3
-Enter guest id to be deleted : 
-101
-Query OK. 1 rows affected
- 1.Display all guests
- 2.Add a guest
- 3.Delete
- 4.Update details
- 5.Exit
-Please enter your choice : 1
-Guest No.	 Name 		Address
-
-1		Sudeep		Jalgaon
-2		Gaurav		Pune
-3		Don		London
-5		Paul		London
-6		Mona		Antarctica
-7		Carel		London
-8		Mr. Robot		USA
-
-
- 1.Display all guests
- 2.Add a guest
- 3.Delete
- 4.Update details
- 5.Exit
-Please enter your choice : 5
+public class HotelDB {
+	
+	private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
+	private static final String USER = "root";
+	private static final String PWD = "peedus";
+	
+	public static void main(String[] args) throws SQLException, IOException {
+		
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String url = "jdbc:mysql://localhost/hoteldb";	
+		
+		Connection con = null;
+		try{
+			//Register JDBC Driver
+			Class.forName(JDBC_DRIVER);
+			con = DriverManager.getConnection(url,USER,PWD);
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		Statement st = con.createStatement();
+		String query;
+		
+		int ch,rows,flag=1;
+		while(flag==1){
+			System.out.println(" 1.Display all guests\n 2.Add a guest\n 3.Delete\n 4.Update details\n 5.Exit");
+			System.out.print("Please enter your choice : ");
+			ch = Integer.parseInt(br.readLine());
+			
+			switch(ch){
+			case 1:
+					System.out.println("Guest No.\t Name \t\tAddress\n");
+					query = "SELECT * FROM Guest;";
+					ResultSet rs = st.executeQuery(query);
+					
+					while(rs.next()){
+						int guest_no = rs.getInt(1);
+						String guest_name = rs.getString(2);
+						String addr = rs.getString(3);
+						System.out.println(guest_no + "\t\t" + guest_name + "\t\t" + addr);
+					}
+					System.out.println("\n");
+					break;
+			
+			case 2:
+					System.out.print("Enter guest number : ");
+					int guest_no = Integer.parseInt(br.readLine());
+					System.out.print("Enter name of guest : ");
+					String guest_name = br.readLine();
+					System.out.print("Enter address : ");
+					String addr = br.readLine();
+					
+					query = "INSERT INTO Guest VALUES(" + guest_no + ",\"" + guest_name + "\",\"" + addr + "\");";
+					
+					rows = st.executeUpdate(query);
+					System.out.println("Query OK. " +rows + " rows affected");
+					break;
+				
+			case 3:
+					System.out.println("Enter guest id to be deleted : ");
+					int id = Integer.parseInt(br.readLine());
+					
+					query = "DELETE FROM Guest WHERE guest_no=" + id + ";";
+					rows = st.executeUpdate(query);
+					System.out.println("Query OK. " +rows + " rows affected");
+					break;
+					
+			case 4:
+					System.out.println("Enter guest number to be updated : ");
+					int guest_id = Integer.parseInt(br.readLine());
+					
+					System.out.println("Enter new name of guest : ");
+					String new_name = br.readLine();
+					System.out.println("Enter address : ");
+					String new_addr = br.readLine();
+					
+					query = "UPDATE Guest SET guest_name=\"" +new_name + "\",addr = \"" + new_addr + "\" WHERE guest_no=" + guest_id +";";
+					rows = st.executeUpdate(query);
+					
+					System.out.println("Query OK. " +rows + " rows affected");
+					break;
+					
+			case 5:
+					flag = 0;
+					break;
+					
+			default:
+					System.out.println("Please enter correct choice");
+					
+			}//Exit switch
+		}//Exit while
+		
+	}//Exit main
+}
 
