@@ -1,0 +1,123 @@
+sudeep@sudeep-PC:~$ python pym.py
+What you want to perform?
+
+1.Insert
+2.Display
+3.Update
+4.Delete
+5.Exit
+Enter your choice2
+What you want to perform?
+
+1.Insert
+2.Display
+3.Update
+4.Delete
+5.Exit
+Enter your choice1
+Enter the Roll no1
+Enter your Name:Sudeep
+Enter your Age19
+Enter the number of Hobbies :3
+Enter the Hobby :Talking
+Enter the Hobby :Badminton
+Enter the Hobby :Arts     
+Inserted successfully
+What you want to perform?
+
+1.Insert
+2.Display
+3.Update
+4.Delete
+5.Exit
+Enter your choice1
+Enter the Roll no2
+Enter your Name:Pruthvi
+Enter your Age15
+Enter the number of Hobbies :3
+Enter the Hobby :Dancing
+Enter the Hobby :Stitching
+Enter the Hobby :Arts
+Inserted successfully
+What you want to perform?
+
+1.Insert
+2.Display
+3.Update
+4.Delete
+5.Exit
+Enter your choice1
+Enter the Roll no5
+Enter your Name:Madhur
+Enter your Age13
+Enter the number of Hobbies :2
+Enter the Hobby :Drawing
+Enter the Hobby :Singing
+Inserted successfully
+What you want to perform?
+
+1.Insert
+2.Display
+3.Update
+4.Delete
+5.Exit
+Enter your choice2
+{u'Age': 19, u'_id': ObjectId('57dea99b977eac16a88d972e'), u'Name': u'Sudeep', u'RollNo': 1, u'Hobbies': [u'Talking', u'Badminton', u'Arts']}
+{u'Age': 15, u'_id': ObjectId('57dea9d0977eac16a88d972f'), u'Name': u'Pruthvi', u'RollNo': 2, u'Hobbies': [u'Dancing', u'Stitching', u'Arts']}
+{u'Age': 13, u'_id': ObjectId('57dea9f3977eac16a88d9730'), u'Name': u'Madhur', u'RollNo': 5, u'Hobbies': [u'Drawing', u'Singing']}
+What you want to perform?
+
+1.Insert
+2.Display
+3.Update
+4.Delete
+5.Exit
+Enter your choice3
+Enter the Roll Number to be updated2
+Enter the updated NamePrasad
+Enter updated Age18
+Enter the number of Hobbies :2
+Enter the Hobby :Smoking
+Enter the Hobby :Dancing
+Updated successfully
+What you want to perform?
+
+1.Insert
+2.Display
+3.Update
+4.Delete
+5.Exit
+Enter your choice2
+{u'Age': 19, u'_id': ObjectId('57dea99b977eac16a88d972e'), u'Name': u'Sudeep', u'RollNo': 1, u'Hobbies': [u'Talking', u'Badminton', u'Arts']}
+{u'Age': 18, u'_id': ObjectId('57dea9d0977eac16a88d972f'), u'Name': u'Prasad', u'RollNo': 2, u'Hobbies': [u'Smoking', u'Dancing']}
+{u'Age': 13, u'_id': ObjectId('57dea9f3977eac16a88d9730'), u'Name': u'Madhur', u'RollNo': 5, u'Hobbies': [u'Drawing', u'Singing']}
+What you want to perform?
+
+1.Insert
+2.Display
+3.Update
+4.Delete
+5.Exit
+Enter your choice4   
+Enter the Roll Number to be deleted5
+Deleted successfully
+What you want to perform?
+
+1.Insert
+2.Display
+3.Update
+4.Delete
+5.Exit
+Enter your choice2
+{u'Age': 19, u'_id': ObjectId('57dea99b977eac16a88d972e'), u'Name': u'Sudeep', u'RollNo': 1, u'Hobbies': [u'Talking', u'Badminton', u'Arts']}
+{u'Age': 18, u'_id': ObjectId('57dea9d0977eac16a88d972f'), u'Name': u'Prasad', u'RollNo': 2, u'Hobbies': [u'Smoking', u'Dancing']}
+What you want to perform?
+
+1.Insert
+2.Display
+3.Update
+4.Delete
+5.Exit
+Enter your choice5   
+sudeep@sudeep-PC:~$ 
+
