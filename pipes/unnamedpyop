@@ -1,0 +1,11 @@
+abc@abc-Vostro-3546:~/PIPES$ python unnamed.py
+Enter any message you want to send :
+Deepali is a sweeeet girl...!!!:-)
+
+
+This is child process.Child is sending message as : Deepali is a sweeeet girl...!!!:-)
+
+This parent process which got message from child as : )-:!!!...lrig teeeews a si ilapeeD
+abc@abc-Vostro-3546:~/PIPES$ ^C
+abc@abc-Vostro-3546:~/PIPES$ 
+

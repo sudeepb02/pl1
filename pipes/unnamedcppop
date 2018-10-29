@@ -1,0 +1,9 @@
+abc@abc-Vostro-3546:~/PIPES$ g++ unnamed.cpp
+abc@abc-Vostro-3546:~/PIPES$ ./a.out
+
+
+This is child process TE COMP1
+This is parent process 1PMOC ET
+abc@abc-Vostro-3546:~/PIPES$ ^C
+abc@abc-Vostro-3546:~/PIPES$ 
+
